@@ -1,4 +1,4 @@
-const nextJest = require('next/jest')
+const { default: nextJest } = require('next/jest')
 const { pathsToModuleNameMapper } = require('ts-jest')
 const { compilerOptions } = require('./tsconfig.json')
 
