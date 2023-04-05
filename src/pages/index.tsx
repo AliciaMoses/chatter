@@ -1,5 +1,5 @@
 import { useUser, SignInButton, SignOutButton } from "@clerk/nextjs";
-import { type NextPage } from "next";
+import type { NextPage } from "next";
 import Head from "next/head";
 
 
