@@ -3,7 +3,8 @@
     "compilerOptions": {
       "noEmit": false,
       "module": "commonjs",
-      "jsx": "react"  // previously react-jsx
+      "jsx": "react",  // previously react-jsx
+      
     },
     "include": [
       "src/**/*",

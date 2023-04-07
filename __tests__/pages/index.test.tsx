@@ -18,6 +18,26 @@ test("renders the index page", () => {
   });
 
   render(<Home />);
-  const heading = screen.getByText(/Create/i);
+  const heading = screen.getByText(/Chatter/i);
   expect(heading).toBeInTheDocument();
+});
+
+test("renders the SignInButton when user is not signed in", () => {
+  (useUser as jest.Mock).mockReturnValue({
+    isSignedIn: false,
+  });
+
+  render(<Home />);
+  const signInButton = screen.getByText(/Sign In/i);
+  expect(signInButton).toBeInTheDocument();
+});
+
+test("renders the SignOutButton when user is signed in", () => {
+  (useUser as jest.Mock).mockReturnValue({
+    isSignedIn: true,
+  });
+
+  render(<Home />);
+  const signOutButton = screen.getByText(/Sign Out/i);
+  expect(signOutButton).toBeInTheDocument();
 });
