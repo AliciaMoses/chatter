@@ -13,7 +13,7 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "esnext",
+    "module": "commonjs",
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -34,7 +34,7 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs",
-    "jest.setup.js"
+    "test" 
   ],
   "exclude": [
     "node_modules"
