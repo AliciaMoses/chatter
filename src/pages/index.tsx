@@ -21,8 +21,12 @@ const Home: NextPage = () => {
           </h1>
           <p>This application is currently in development</p>
           <div>
-            {!user.isSignedIn && <SignInButton />}
-            {user.isSignedIn && <SignOutButton />}
+            {!user.isSignedIn && (
+              <SignInButton data-testid="SignInButton" />
+            )}
+            {user.isSignedIn && (
+              <SignOutButton data-testid="SignOutButton" />
+            )}
           </div>
         </div>
       </main>

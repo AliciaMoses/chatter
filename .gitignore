@@ -8,6 +8,10 @@
 # testing
 /coverage
 
+cypress/videos
+cypress/screenshots
+cypress/downloads
+
 # database
 /prisma/db.sqlite
 /prisma/db.sqlite-journal

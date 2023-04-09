@@ -1,11 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es2017",
+    "target": "esnext",
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "esnext",
     ],
+    "typeRoots": ["./node_modules/@types", "./types"],
     "allowJs": true,
     "checkJs": true,
     "skipLibCheck": true,
@@ -34,9 +35,11 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs",
-    "test" 
+    "cypress/**/*.ts"
   ],
   "exclude": [
-    "node_modules"
+    "./tests/",
+    "./node_modules/",
+    "./dist/"
   ]
 }
