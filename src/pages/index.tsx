@@ -4,6 +4,8 @@ import Head from "next/head";
 import { postsRouter } from "~/server/api/routers/postsRouter";
 import { api } from "../utils/api";
 import { post } from "cypress/types/jquery";
+import CreatePost from "~/components/CreatePost";
+import Sinon from "cypress/types/sinon";
 
 const Home: NextPage = () => {
   const user = useUser();
@@ -25,8 +27,9 @@ const Home: NextPage = () => {
           <p>This application is currently in development</p>
           <div>
             {!user.isSignedIn && <SignInButton />}
-            {user.isSignedIn && <SignOutButton />}
+            {user.isSignedIn && <CreatePost useUserHook={useUser} />}
           </div>
+          <div>{user.isSignedIn && <SignOutButton />}</div>
           <div>{data?.map((post) =>(<div key={post.post.authorId}>{post.post.content}</div>))}</div>
           
         </div>
