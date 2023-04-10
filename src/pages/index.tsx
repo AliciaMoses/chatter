@@ -1,11 +1,11 @@
 import { useUser, SignInButton, SignOutButton } from "@clerk/nextjs";
 import type { NextPage } from "next";
 import Head from "next/head";
-import { postsRouter } from "~/server/api/routers/postsRouter";
+
 import { api } from "../utils/api";
-import { post } from "cypress/types/jquery";
+
 import CreatePost from "~/components/CreatePost";
-import Sinon from "cypress/types/sinon";
+
 
 const Home: NextPage = () => {
   const user = useUser();
@@ -30,7 +30,16 @@ const Home: NextPage = () => {
             {user.isSignedIn && <CreatePost useUserHook={useUser} />}
           </div>
           <div>{user.isSignedIn && <SignOutButton />}</div>
-          <div>{data?.map((post) =>(<div key={post.post.authorId}>{post.post.content}</div>))}</div>
+          <div>
+          {data?.map(({ post, author }) => (
+            <div key={post.id}>
+              <div>Post content: {post.content}</div>
+              <div>Author username: {author.username}</div>
+              <img src={author.profileImageUrl} alt="author profile image" />
+            </div>
+          ))}
+        </div>
+
           
         </div>
       </main>

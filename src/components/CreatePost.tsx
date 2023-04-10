@@ -10,7 +10,10 @@ const CreatePost: React.FC<CreatePostProps> = ({ useUserHook }) => {
 
   return (
     <div>
+    <div>
       <img src={user.profileImageUrl} alt="user profile image" />
+    </div>
+    <input type="text" placeholder="Add to the chatter..." />
     </div>
   );
 };
