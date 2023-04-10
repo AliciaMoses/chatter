@@ -1,6 +1,5 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
@@ -11,13 +10,23 @@ generator client {
   provider = "prisma-client-js"
 }
 
-
 model Posts {
-  id         String   @id @default(cuid())
-  createdAt  DateTime @default(now())
-  content    String   @db.VarChar(255)
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  content   String   @db.VarChar(255)
+  authorId  String
+  likes     Likes[]
 
+  @@index([authorId])
+}
+
+model Likes {
+  id         String  @id @default(cuid())
   authorId   String
+  post       Posts   @relation(fields: [postId], references: [id])
+  postId     String
 
-  @@index([authorId])   
+  @@unique([authorId, postId]) // Ensures a user can like a post only once
+  @@index([authorId])
+  @@index([postId])
 }
