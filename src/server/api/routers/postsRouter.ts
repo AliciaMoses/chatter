@@ -1,8 +1,29 @@
-import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
-import { postsController } from "~/server/api/controllers/postsController";
+import { createTRPCRouter, publicProcedure, privateProcedure } from "~/server/api/trpc";
+import postsController  from "~/server/api/controllers/postsController";
+import { z } from "zod";
 
 export const postsRouter = createTRPCRouter({
-  getAll: publicProcedure.query(() => {
-    return postsController.getAll();
+  getById: publicProcedure
+    .input(z.object({ id: z.string() }))
+    .query(async ({ input }) => {
+      return await postsController.getById(input.id);
+    }),
+
+  getAll: publicProcedure.query(async () => {
+    return await postsController.getAll();
   }),
+
+  getPostsByUserId: publicProcedure
+    .input(z.object({ userId: z.string() }))
+    .query(async ({ input }) => {
+      return await postsController.getPostsByUserId(input.userId);
+    }),
+
+  create: privateProcedure
+    .input(z.object({
+      content: z.string().min(1).max(280),
+    }))
+    .mutation(async ({ ctx, input }) => {
+      return await postsController.create({ userId: ctx.userId, content: input.content });
+    }),
 });

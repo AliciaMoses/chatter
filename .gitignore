@@ -11,6 +11,7 @@
 cypress/videos
 cypress/screenshots
 cypress/downloads
+cypress/support
 
 # database
 /prisma/db.sqlite

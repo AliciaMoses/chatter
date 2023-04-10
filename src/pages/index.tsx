@@ -1,10 +1,13 @@
 import { useUser, SignInButton, SignOutButton } from "@clerk/nextjs";
 import type { NextPage } from "next";
 import Head from "next/head";
-
+import { postsRouter } from "~/server/api/routers/postsRouter";
+import { api } from "../utils/api";
+import { post } from "cypress/types/jquery";
 
 const Home: NextPage = () => {
   const user = useUser();
+  const { data } = api.posts.getAll.useQuery();
 
 
   return (
@@ -21,13 +24,11 @@ const Home: NextPage = () => {
           </h1>
           <p>This application is currently in development</p>
           <div>
-            {!user.isSignedIn && (
-              <SignInButton data-testid="SignInButton" />
-            )}
-            {user.isSignedIn && (
-              <SignOutButton data-testid="SignOutButton" />
-            )}
+            {!user.isSignedIn && <SignInButton />}
+            {user.isSignedIn && <SignOutButton />}
           </div>
+          <div>{data?.map((post) =>(<div key={post.post.authorId}>{post.post.content}</div>))}</div>
+          
         </div>
       </main>
     </>
