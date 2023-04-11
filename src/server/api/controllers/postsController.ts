@@ -96,7 +96,16 @@ const postsController = {
 
     return addUserDataToPosts(posts);
   },
+ 
 
+  getPostLikes: async (postId: string) => {
+    const likes = await prisma.likes.count({
+      where: {
+        postId,
+      },
+    });
+    return likes;
+  },
   
 };
 

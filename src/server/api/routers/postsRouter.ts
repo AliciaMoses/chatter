@@ -26,4 +26,13 @@ export const postsRouter = createTRPCRouter({
     .mutation(async ({ ctx, input }) => {
       return await postsController.create({ userId: ctx.userId, content: input.content });
     }),
+
+    
+
+  getPostLikes: publicProcedure
+    .input(z.object({ postId: z.string() }))
+    .query(async ({ input }) => {
+      return await postsController.getPostLikes(input.postId);
+    }),
+
 });
