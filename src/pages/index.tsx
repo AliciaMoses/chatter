@@ -24,7 +24,7 @@ const Home: NextPage = () => {
           <p>This application is currently in development</p>
           <div>
             {!user.isSignedIn && <SignInButton data-testid='SignInButton' />}
-            {user.isSignedIn && <CreatePost useUserHook={useUser} />}
+            {user.isSignedIn && <CreatePost />}
           </div>
           <div>{user.isSignedIn && <SignOutButton />}</div>
           <div>
