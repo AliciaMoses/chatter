@@ -28,16 +28,16 @@ export const getServerSideProps: GetServerSideProps<PostViewProps> = (context) =
   const { id } = context.query;
 
   if (!id || Array.isArray(id)) {
-    return {
+    return Promise.resolve({
       notFound: true,
-    };
+    });
   }
 
-  return {
+  return Promise.resolve({
     props: {
       id,
     },
-  };
+  });
 };
 
 export default PostView;

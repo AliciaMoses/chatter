@@ -36,11 +36,11 @@ export const getServerSideProps: GetServerSideProps<{ username: string }> = (con
 
   const username = slug.replace("@", "");
 
-  return {
+  return Promise.resolve({
     props: {
       username,
     },
-  };
+  });
 };
 
 export default Profile;
