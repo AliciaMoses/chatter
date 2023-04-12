@@ -1,7 +1,8 @@
 import type { GetServerSideProps, NextPage } from "next";
 import Head from "next/head";
 import { api } from "~/utils/api";
-import UserPost from "~/components/UserPost";
+import UserPost from "~/components/userPost/UserPost";
+import NotFound from "~/components/notFound/NotFound";
 
 type PostViewProps = {
   id: string;
@@ -11,7 +12,7 @@ const PostView: NextPage<PostViewProps> = ({ id }) => {
   const { data } = api.posts.getById.useQuery({
     id,
   });
-  if (!data) return <div>404</div>;
+  if (!data) return <div><NotFound /></div>;
 
   return (
     <>

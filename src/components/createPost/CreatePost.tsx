@@ -56,3 +56,5 @@ const CreatePost = () => {
 };
 
 export default CreatePost;
+// disable button unless input is not null 
+// display character limit or provide error warning in field when over charcater limit

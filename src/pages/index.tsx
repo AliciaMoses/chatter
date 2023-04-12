@@ -1,9 +1,9 @@
 import { useUser, SignInButton, SignOutButton } from "@clerk/nextjs";
 import type { NextPage } from "next";
 import Head from "next/head";
-import UserPost from "~/components/UserPost";
+import UserPost from "~/components/userPost/UserPost";
 import { api } from "../utils/api";
-import CreatePost from "~/components/CreatePost";
+import CreatePost from "~/components/createPost/CreatePost";
 
 const Home: NextPage = () => {
   const user = useUser();

@@ -1,6 +1,7 @@
 import type { NextPage, GetServerSideProps } from "next";
 import { api } from "~/utils/api";
-import UserPost from "~/components/UserPost";
+import UserPost from "~/components/userPost/UserPost";
+import NotFound from "~/components/notFound/NotFound";
 
 const ProfileFeed: React.FC<{ userId: string }> = ({ userId }) => {
   const { data } = api.posts.getPostsByUserId.useQuery({ userId });
@@ -19,11 +20,11 @@ const ProfileFeed: React.FC<{ userId: string }> = ({ userId }) => {
 const Profile: NextPage<{ username: string }> = ({ username }) => {
   const { data } = api.profiles.getUserByUsername.useQuery({ username });
 
-  if (!data) return <div>404</div>;
+  if (!data) return <div><NotFound /></div>;
 
   return (
     <>
-      <h1>{data.username}</h1>
+      <h1 className = "text-center">{data.username}</h1>
       <ProfileFeed userId={data.id} />
     </>
   );
