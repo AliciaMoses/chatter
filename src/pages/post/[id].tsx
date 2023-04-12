@@ -24,7 +24,7 @@ const PostView: NextPage<PostViewProps> = ({ id }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<PostViewProps> = async (context) => {
+export const getServerSideProps: GetServerSideProps<PostViewProps> = (context) => {
   const { id } = context.query;
 
   if (!id || Array.isArray(id)) {

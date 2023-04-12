@@ -29,7 +29,7 @@ const Profile: NextPage<{ username: string }> = ({ username }) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps<{ username: string }> = async (context) => {
+export const getServerSideProps: GetServerSideProps<{ username: string }> = (context) => {
   const slug = context.params?.slug;
 
   if (typeof slug !== "string") throw new Error("no slug");
