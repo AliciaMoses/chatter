@@ -15,7 +15,7 @@ const CreatePost = () => {
   if (!user) return null;
 
   return (
-    <div className="flex w-full gap-3 border">
+    <div className="flex w-full gap-3 border shadow-inner">
       <UserButton appearance={{
         elements: {
           userButtonAvatarBox: {
@@ -49,6 +49,7 @@ const CreatePost = () => {
         onClick={() => mutate({ content: input })}
       >
         Post
+        
       </button>
     </div>
   );
