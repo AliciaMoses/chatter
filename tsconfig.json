@@ -3,9 +3,12 @@
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext",
+      "esnext"
     ],
-    "typeRoots": ["./node_modules/@types", "./types"],
+    "typeRoots": [
+      "./node_modules/@types",
+      "./types"
+    ],
     "allowJs": true,
     "checkJs": true,
     "skipLibCheck": true,
