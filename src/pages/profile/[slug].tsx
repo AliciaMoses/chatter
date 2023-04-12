@@ -9,7 +9,7 @@ const ProfileFeed: React.FC<{ userId: string }> = ({ userId }) => {
   if (!data || data.length === 0) return <div>User has not posted</div>;
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col space-y-10 ">
       {data.map((post) => (
         <UserPost {...post} key={post.post.id} />
       ))}

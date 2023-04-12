@@ -18,7 +18,7 @@ const UserPost = (props: IndividualPost) => {
         className="flex bg-slate-100 p-4 rounded-lg items-start"
       >
         <div className="postAuthorImg mr-4">
-          <Link href={`/@${author.username}`}>
+          <Link href={`/profile/@${author.username}`}>
               <Image
                 src={author.profileImageUrl}
                 alt="Author profile image"
@@ -35,7 +35,7 @@ const UserPost = (props: IndividualPost) => {
                   {post.content}
                 </span>
             </Link>
-            <Link href={`/@${author.username}`}>
+            <Link href={`/profile/@${author.username}`}>
                 <span className="postAuthor text-gray-500">
                   -{author.username}
                 </span>
