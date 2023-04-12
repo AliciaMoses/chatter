@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe('Home Component', () => {
+describe('Homepage', () => {
   beforeEach(() => {
     cy.visit('/');
   });
@@ -20,5 +20,24 @@ describe('Home Component', () => {
   it('renders the sign in button when user is not signed in', () => {
     cy.get('[data-testid=SignInButton]').should('be.visible');
   });
+
+  it('should display the correct page title', () => {    
+    cy.title().should('eq', 'Chatter');
+  });
+
+  
+    it('should have the correct background gradient and text color', () => {
+    
+      cy.get('main').should(
+        'have.css',
+        'background-color',
+        'rgb(255, 255, 255)',
+      );
+  
+      cy.get('main h1').should('have.css', 'color', 'rgb(0, 0, 0)');
+  
+      cy.get('main p').should('have.css', 'color', 'rgb(0, 0, 0)');
+    });
+  
 
 });
