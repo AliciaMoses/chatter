@@ -8,14 +8,14 @@
 
 ## Components
 
-- [] Add landing page to index
-- [] Add Navbar
+- [x] Add landing page to index
+- [x] Add Navbar
 - [] Add Profile Header
 
 
 ## Data Rendering 
 
-- [] Adjust / postsview to a limited number 
+- [x] Adjust / postsview to a limited number 
 - [] Add time, date to post
 - [] Add usercreated to ProfileHeader
 

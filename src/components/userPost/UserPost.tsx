@@ -14,7 +14,6 @@ const UserPost = (props: IndividualPost) => {
     <>
     <Link href={`/post/${post.id}`}>
       <div
-        data-testid="user-post"
         key={post.id}
         className="flex rounded-lg border border-solid border-slate-200  bg-slate-100 p-4 shadow-md"
       >
