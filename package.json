@@ -3,13 +3,14 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "prisma generate && next build",
+    "build": "prisma generate && next build && (npm run cypress:run || true)",
     "dev": "next dev",
     "postinstall": "prisma generate",
     "lint": "next lint",
     "start": "next start",
     "test": "npm test",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "@clerk/nextjs": "^4.14.1",
