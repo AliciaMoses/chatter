@@ -1,4 +1,5 @@
 import { api } from "../../utils/api";
+import { SignUpButton } from "@clerk/nextjs";
 import UserPost from "~/components/userPost/UserPost";
 
 const LandingPage = () => {
@@ -21,9 +22,11 @@ const LandingPage = () => {
                 Welcome, this is Chatter!
               </p>
               <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none"></dl>
+              <SignUpButton mode="modal">
               <button className="rounded border-2 border-slate-200 px-4 py-2 font-mono text-slate-600 shadow-md hover:bg-gray-200">
-                Sign in via GitHub
+                Join via GitHub
               </button>
+              </SignUpButton>
             </div>
           </div>
           <div>

@@ -22,7 +22,7 @@ describe('Homepage', () => {
   });
 
   it('renders the sign in button', () => {
-    cy.get('button').should('contain.text', 'Sign in via GitHub');
+    cy.get('button').should('contain.text', 'Join via GitHub');
   });
 
   it('should display the correct page title', () => {    
