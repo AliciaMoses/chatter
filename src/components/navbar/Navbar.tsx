@@ -44,7 +44,7 @@ const Navbar: React.FC = () => {
             </a>
           </SignOutButton>
         ) : (
-          <SignInButton afterSignInUrl="/feed">
+          <SignInButton mode="modal" afterSignInUrl="/feed">
             <a className="text-sm font-semibold leading-6 text-slate-400 cursor-pointer">
               Log in <span aria-hidden="true">&rarr;</span>
             </a>
