@@ -97,6 +97,7 @@ const UserPost = (props: IndividualPost) => {
             </div>
             <br></br>
             <div className="">
+              <Link href="">
               <button
                 onClick={handleLikeClick}
                 className={`h-6 w-6 ${
@@ -122,6 +123,7 @@ const UserPost = (props: IndividualPost) => {
                   userLiked ? "text-sky-500" : "text-gray-500"
                 }`}>{likes}</span>
               </button>
+              </Link>
             </div>
           </div>
         </div>

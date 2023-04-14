@@ -5,7 +5,7 @@
 
 - [x] Add signed in redirect to /feed
 - []  Add redirects via clerk auth requirement wrappers
-- []  Adjust post link areas to avoid like redirection
+- [x]  Adjust post link areas to avoid like redirection
 
 ## Components
 
