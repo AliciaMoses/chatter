@@ -5,10 +5,19 @@ import UserPost from "~/components/userPost/UserPost";
 import { api } from "../utils/api";
 import Navbar from "~/components/navbar/Navbar";
 import CreatePost from "~/components/createPost/CreatePost";
+import { useState, useEffect } from "react";
 
 const FeedPage: NextPage = () => {
   const user = useUser();
-  const { data } = api.posts.getAll.useQuery();
+  const { data, refetch } = api.posts.getAll.useQuery();
+  const [newPostCreated, setNewPostCreated] = useState(false);
+
+  useEffect(() => {
+    if (newPostCreated) {
+      void refetch();
+      setNewPostCreated(false);
+    }
+  }, [newPostCreated, refetch]);
 
   return (
     <>
@@ -20,7 +29,7 @@ const FeedPage: NextPage = () => {
       <Navbar />
       <div className="py-869 flex min-h-full items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-4">
-          <div>{user.isSignedIn && <CreatePost />}</div>
+          <div>{user.isSignedIn && <CreatePost onNewPostCreated={setNewPostCreated} />}</div>
           <br />
           {data?.map((individualPost) => (
             <UserPost {...individualPost} key={individualPost.post.id} />

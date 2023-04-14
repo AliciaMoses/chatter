@@ -1,8 +1,15 @@
 import { useUser } from "@clerk/clerk-react";
 import { api } from "~/utils/api";
 import { useState } from "react";
+import type { FC } from "react";
 
-const CreatePost = () => {
+
+interface CreatePostProps {
+  onNewPostCreated: (created: boolean) => void;
+}
+
+
+const CreatePost:FC<CreatePostProps> = ({ onNewPostCreated }) => {
   const { user } = useUser();
   const [input, setInput] = useState("");
   const charLimit = 255;
@@ -10,6 +17,7 @@ const CreatePost = () => {
   const { mutate } = api.posts.create.useMutation({
     onSuccess: () => {
       setInput("");
+      onNewPostCreated(true);
     },
   });
 
