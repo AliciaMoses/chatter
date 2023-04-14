@@ -11,14 +11,18 @@
 - [x] Add landing page to index
 - [x] Add Navbar
 - [] Add Profile Header
+- [] Add Custom Feed
+- [] Add Feed Tabs
 
+## User-user Interactions
 
+- [] Add follow / unfollow button 
 ## Data Rendering 
 
 - [x] Adjust / postsview to a limited number 
 - [x] Add time, date to post
 - [] Add usercreated to ProfileHeader
-
+- [] Add following count to ProfileHeader
 
 ## Post Functions 
 
