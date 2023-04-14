@@ -8,11 +8,6 @@ import {
 
 import Link from "next/link";
 
-import { UserProfile } from "@clerk/nextjs";
-
-const UserProfilePage = () => (
-  <UserProfile path="/user-profile" routing="path" />
-);
 
 const Navbar: React.FC = () => {
   const user = useUser();

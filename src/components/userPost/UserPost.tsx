@@ -1,4 +1,4 @@
-import { RouterOutputs } from "~/utils/api";
+import type { RouterOutputs } from "~/utils/api";
 import Link from "next/link";
 import { api } from "~/utils/api";
 import Image from "next/image";
@@ -29,12 +29,12 @@ const UserPost = (props: IndividualPost) => {
         })
       : postDate.toLocaleDateString();
 
-  const handleLikeClick = async () => {
+  const handleLikeClick = () => {
     if (!user) {
       return;
     }
 
-    await toggleLikeMutation.mutateAsync({ postId: post.id });
+    toggleLikeMutation.mutateAsync({ postId: post.id });
   };
 
   return (
