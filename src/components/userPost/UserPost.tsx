@@ -12,12 +12,17 @@ const UserPost = (props: IndividualPost) => {
   const { user } = useUser();
 
   const { post, author } = props;
-  const { data: likes } = api.posts.getPostLikes.useQuery({ postId: post.id });
-  const { data: userLike } = api.posts.getUserLike.useQuery({
+  const { data: likes, refetch: refetchLikes } = api.posts.getPostLikes.useQuery({ postId: post.id });
+  const { data: userLike, refetch: refetchUserLike } = api.posts.getUserLike.useQuery({
     postId: post.id,
     userId: user?.id,
   });
-  const toggleLikeMutation = api.posts.toggleLike.useMutation();
+  const toggleLikeMutation = api.posts.toggleLike.useMutation({
+    onSuccess: () => {
+      refetchLikes();
+      refetchUserLike();
+    },
+  });
   const userLiked = userLike && userLike.isLiked;
 
   const postDate = new Date(post.createdAt);
@@ -29,14 +34,17 @@ const UserPost = (props: IndividualPost) => {
         })
       : postDate.toLocaleDateString();
 
-  const handleLikeClick = () => {
+  const handleLikeClick = async () => {
     if (!user) {
       return;
     }
-
-    toggleLikeMutation.mutateAsync({ postId: post.id });
-  };
-
+    try {
+      await toggleLikeMutation.mutateAsync({ postId: post.id });
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  
+};
   return (
     <>
       <Link href={`/post/${post.id}`}>
