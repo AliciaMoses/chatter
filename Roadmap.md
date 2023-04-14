@@ -16,7 +16,7 @@
 ## Data Rendering 
 
 - [x] Adjust / postsview to a limited number 
-- [] Add time, date to post
+- [x] Add time, date to post
 - [] Add usercreated to ProfileHeader
 
 

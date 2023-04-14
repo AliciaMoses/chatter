@@ -2,6 +2,8 @@ import { RouterOutputs } from "~/utils/api";
 import Link from "next/link";
 import { api } from "~/utils/api";
 import Image from "next/image";
+import { differenceInDays } from "date-fns";
+import { formatDistanceToNow } from "date-fns";
 
 type IndividualPost = RouterOutputs["posts"]["getAll"][number];
 
@@ -9,6 +11,16 @@ const UserPost = (props: IndividualPost) => {
   const { post, author } = props;
 
   const { data: likes } = api.posts.getPostLikes.useQuery({ postId: post.id });
+
+  const postDate = new Date(post.createdAt);
+  const daysDifference = differenceInDays(new Date(), postDate);
+
+  const relativeTime =
+    daysDifference < 2
+      ? formatDistanceToNow(postDate, {
+          addSuffix: true,
+        })
+      : postDate.toLocaleDateString();
 
   return (
     <>
@@ -41,6 +53,7 @@ const UserPost = (props: IndividualPost) => {
                 <span className="postAuthor font-mono text-sm text-gray-500">
                   @{author.username}
                 </span>
+                <span className="ml-2  font-mono font-extralight  text-sm  text-gray-400">{relativeTime}</span>
               </div>
             </Link>
           </div>
