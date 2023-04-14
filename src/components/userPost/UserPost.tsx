@@ -12,18 +12,13 @@ const UserPost = (props: IndividualPost) => {
   const { user } = useUser();
 
   const { post, author } = props;
-  const { data: likes, refetch: refetchLikes } = api.posts.getPostLikes.useQuery({ postId: post.id });
-  const { data: userLike, refetch: refetchUserLike } = api.posts.getUserLike.useQuery({
-    postId: post.id,
-    userId: user?.id,
-  });
-  const toggleLikeMutation = api.posts.toggleLike.useMutation({
-    onSuccess: () => {
-      refetchLikes();
-      refetchUserLike();
-    },
-  });
-  const userLiked = userLike && userLike.isLiked;
+  const { data: likes, refetch: refetchLikes } =
+    api.posts.getPostLikes.useQuery({ postId: post.id });
+  const { data: userLike, refetch: refetchUserLike } =
+    api.posts.getUserLike.useQuery({
+      postId: post.id,
+      userId: user?.id,
+    });
 
   const postDate = new Date(post.createdAt);
   const daysDifference = differenceInDays(new Date(), postDate);
@@ -34,17 +29,35 @@ const UserPost = (props: IndividualPost) => {
         })
       : postDate.toLocaleDateString();
 
-  const handleLikeClick = async () => {
-    if (!user) {
-      return;
-    }
+  const toggleLikeMutation = api.posts.toggleLike.useMutation({
+    onSuccess: () => {
+      refetchLikes()
+        .then(() => refetchUserLike())
+        .catch((error) => console.error("Error", error));
+    },
+  });
+
+  const userLiked = userLike && userLike.isLiked;
+
+  const likePost = async (): Promise<void> => {
     try {
-      await toggleLikeMutation.mutateAsync({ postId: post.id });
+      if (!user) {
+        return;
+      }
+      return await toggleLikeMutation.mutateAsync({ postId: post.id });
     } catch (error) {
-      console.error('Error:', error);
+      throw error;
     }
-  
-};
+  };
+
+  const handleLikeClick = (): void => {
+    likePost()
+      .then()
+      .catch((result) => {
+        console.error("error", result);
+      });
+  };
+
   return (
     <>
       <Link href={`/post/${post.id}`}>
@@ -113,6 +126,6 @@ const UserPost = (props: IndividualPost) => {
       <br></br>
     </>
   );
-};
+}; 
 
 export default UserPost;
