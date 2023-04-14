@@ -4,7 +4,8 @@
 ## Routing 
 
 - [x] Add signed in redirect to /feed
-- [] Add redirects via clerk auth requirement wrappers
+- []  Add redirects via clerk auth requirement wrappers
+- []  Adjust post link areas to avoid like redirection
 
 ## Components
 
@@ -26,7 +27,7 @@
 
 ## Post Functions 
 
-- [] Add like button functionality
+- [x] Add like button functionality
 - [] Add emoji button functionality
 - [] Add delete button
 

@@ -1,5 +1,9 @@
-import { createTRPCRouter, publicProcedure, privateProcedure } from "~/server/api/trpc";
-import postsController  from "~/server/api/controllers/postsController";
+import {
+  createTRPCRouter,
+  publicProcedure,
+  privateProcedure,
+} from "~/server/api/trpc";
+import postsController from "~/server/api/controllers/postsController";
 import { z } from "zod";
 
 export const postsRouter = createTRPCRouter({
@@ -20,14 +24,17 @@ export const postsRouter = createTRPCRouter({
     }),
 
   create: privateProcedure
-    .input(z.object({
-      content: z.string().min(1).max(280),
-    }))
+    .input(
+      z.object({
+        content: z.string().min(1).max(280),
+      })
+    )
     .mutation(async ({ ctx, input }) => {
-      return await postsController.create({ userId: ctx.userId, content: input.content });
+      return await postsController.create({
+        userId: ctx.userId,
+        content: input.content,
+      });
     }),
-
-    
 
   getPostLikes: publicProcedure
     .input(z.object({ postId: z.string() }))
@@ -35,4 +42,18 @@ export const postsRouter = createTRPCRouter({
       return await postsController.getPostLikes(input.postId);
     }),
 
+  toggleLike: privateProcedure
+    .input(z.object({ postId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      return await postsController.toggleLike({
+        userId: ctx.userId,
+        postId: input.postId,
+      });
+    }),
+
+  getUserLike: publicProcedure
+    .input(z.object({ postId: z.string(), userId: z.string().optional() }))
+    .query(async ({ input }) => {
+      return await postsController.getUserLike(input.postId, input.userId);
+    }),
 });

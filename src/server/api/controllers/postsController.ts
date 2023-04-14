@@ -106,7 +106,47 @@ const postsController = {
     });
     return likes;
   },
-  
+ 
+
+toggleLike: async ({ userId, postId }: { userId: string; postId: string }) => {
+ 
+  const existingLike = await prisma.likes.findUnique({
+    where: {
+      authorId_postId: {
+        authorId: userId,
+        postId: postId,
+      },
+    },
+  });
+
+  if (existingLike) {
+    
+    await prisma.likes.delete({
+      where: {
+        id: existingLike.id,
+      },
+    });
+  } else {
+   
+    await prisma.likes.create({
+      data: {
+        authorId: userId,
+        postId: postId,
+      },
+    });
+  }
+},
+
+getUserLike: async (postId: string, userId?: string) => {
+  const likes = await prisma.likes.findMany({
+    where: {
+      postId,
+      ...(userId && { authorId: userId }),
+    },
+  });
+  return { isLiked: likes.length > 0, count: likes.length };
+},
+
 };
 
 export default postsController;
