@@ -1,10 +1,13 @@
 import { api } from "../../utils/api";
 import { SignUpButton } from "@clerk/nextjs";
+import { useUser } from "@clerk/nextjs";
+import Link from "next/link";
 import UserPost from "~/components/userPost/UserPost";
 
 const LandingPage = () => {
   const { data } = api.posts.getAll.useQuery();
   const recentPosts = data ? data.slice(-3) : [];
+  const user = useUser();
 
   return (
     <div className="overflow-hidden py-24 sm:py-32">
@@ -22,11 +25,19 @@ const LandingPage = () => {
                 Welcome, this is Chatter!
               </p>
               <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none"></dl>
-              <SignUpButton mode="modal">
-              <button className="rounded border-2 border-slate-200 px-4 py-2 font-mono text-slate-600 shadow-md hover:bg-gray-200">
-                Join via GitHub
-              </button>
-              </SignUpButton>
+              {user.isSignedIn ? (
+        <Link href="/feed">
+          <button className="rounded border-2 border-slate-200 px-4 py-2 font-mono text-slate-600 shadow-md hover:bg-gray-200">
+            Join the Conversation
+          </button>
+        </Link>
+      ) : (
+        <SignUpButton mode="modal" afterSignInUrl="/feed">
+          <button className="rounded border-2 border-slate-200 px-4 py-2 font-mono text-slate-600 shadow-md hover:bg-gray-200">
+            Join via GitHub
+          </button>
+        </SignUpButton>
+      )}
             </div>
           </div>
           <div>
@@ -43,3 +54,4 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
+

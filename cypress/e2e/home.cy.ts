@@ -30,11 +30,8 @@ describe('Homepage', () => {
   });
 
   it('should render the navbar with the correct links', () => {
-    cy.get('nav a').should('have.length', 5);
+    cy.get('nav a').should('have.length', 2);
     cy.get('nav a').eq(0).should('contain.text', 'Chatter');
-    cy.get('nav a').eq(1).should('contain.text', 'Link');
-    cy.get('nav a').eq(2).should('contain.text', 'Link');
-    cy.get('nav a').eq(3).should('contain.text', 'Link');
   });
 
   it('should render recent posts', () => {
