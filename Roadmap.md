@@ -3,8 +3,8 @@
 
 ## Routing 
 
-- [] Add signed in redirect to /feed
-
+- [x] Add signed in redirect to /feed
+- [] Add redirects via clerk auth requirement wrappers
 
 ## Components
 
@@ -23,7 +23,8 @@
 ## Post Functions 
 
 - [] Add like button functionality
-
+- [] Add emoji button functionality
+- [] Add delete button
 
 ## UI
 
