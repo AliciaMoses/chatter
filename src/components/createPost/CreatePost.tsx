@@ -23,7 +23,7 @@ const CreatePost:FC<CreatePostProps> = ({ onNewPostCreated }) => {
 
   if (!user) return null;
 
-  const isInputValid = input.length > 0 && input.length <= charLimit;
+  const isInputValid = input.length > 0 && input.length <= charLimit && !/^\s*$/.test(input);
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -31,6 +31,16 @@ const CreatePost:FC<CreatePostProps> = ({ onNewPostCreated }) => {
       mutate({ content: input });
     }
   };
+
+  const onKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    console.log(isInputValid);
+    
+   if (event.key === "Enter" && !event.shiftKey && isInputValid) {
+      event.preventDefault();
+      
+      mutate({ content: input });
+   }
+  }  
 
   return (
     <>
@@ -63,6 +73,7 @@ const CreatePost:FC<CreatePostProps> = ({ onNewPostCreated }) => {
             placeholder="Share your thoughts..."
             value={input}
             onChange={(event) => setInput(event.target.value)}
+            onKeyPress={onKeyPress}
           ></textarea>
           <button
             type="submit"

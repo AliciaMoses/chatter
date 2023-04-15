@@ -8,7 +8,7 @@ import { useUser } from "@clerk/clerk-react";
 
 type IndividualPost = RouterOutputs["posts"]["getAll"][number];
 
-const UserPost = (props: IndividualPost) => {
+const UserPost = (props: IndividualPost & { onPostDeleted: () => void } ) => {
   const { user } = useUser();
 
   const { post, author } = props;
@@ -37,7 +37,36 @@ const UserPost = (props: IndividualPost) => {
     },
   });
 
+  const deletePostMutation = api.posts.delete.useMutation({
+    onSuccess: () => {
+      console.log("post deleted")
+      props.onPostDeleted();
+    },
+  });
+
+  
+  const deletePost = async (): Promise<void> => {
+    try {
+      if (!user || user.id !== author.id) {
+        return;
+      }
+      return await deletePostMutation.mutateAsync({ postId: post.id });
+    } catch (error) {
+      throw error;
+    }
+  }; 
+
+  const handleDeleteClick = (): void => {
+    deletePost()
+      .then()
+      .catch((result) => {
+        console.error("error", result);
+      });
+  };
+
+
   const userLiked = userLike && userLike.isLiked;
+
 
   const likePost = async (): Promise<void> => {
     try {
@@ -124,6 +153,21 @@ const UserPost = (props: IndividualPost) => {
                 }`}>{likes}</span>
               </button>
               </Link>
+            </div>
+            <div>
+            {user && user.id === author.id && (
+              <div className="ml-4">
+                <Link href="">
+                <button
+                  onClick={handleDeleteClick}
+                  className="text-red-500 bg-red-100 px-2 py-1 rounded-md font-mono text-sm"
+                >
+                  Delete
+                </button>
+                </Link>
+              
+              </div>
+            )}
             </div>
           </div>
         </div>

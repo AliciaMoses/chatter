@@ -29,7 +29,9 @@
 
 - [x] Add like button functionality
 - [] Add emoji button functionality
-- [] Add delete button
+- [x] Add delete button
+- [] Add enter to send confirmation
+- [] Add delete post modal confirmation
 
 ## UI
 
@@ -37,4 +39,4 @@
 - [] Style buttons 
 - [] Add dymanic page titles
 - [] Add loading animations 
-- [] Add automatic feed update after posts
+- [x] Add automatic feed update after posts

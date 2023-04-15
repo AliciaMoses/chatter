@@ -10,14 +10,18 @@ import { useState, useEffect } from "react";
 const FeedPage: NextPage = () => {
   const user = useUser();
   const { data, refetch } = api.posts.getAll.useQuery();
-  const [newPostCreated, setNewPostCreated] = useState(false);
+  const [feedUpdated, setFeedUpdated] = useState(false);
 
   useEffect(() => {
-    if (newPostCreated) {
+    if (feedUpdated) {
       void refetch();
-      setNewPostCreated(false);
+      setFeedUpdated(false);
     }
-  }, [newPostCreated, refetch]);
+  }, [feedUpdated, refetch]);
+
+  const handleFeedUpdate = () => {
+    setFeedUpdated(true);
+  };
 
   return (
     <>
@@ -29,10 +33,10 @@ const FeedPage: NextPage = () => {
       <Navbar />
       <div className="py-869 flex min-h-full items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-md space-y-4">
-          <div>{user.isSignedIn && <CreatePost onNewPostCreated={setNewPostCreated} />}</div>
+          <div>{user.isSignedIn && <CreatePost onNewPostCreated={handleFeedUpdate} />}</div>
           <br />
           {data?.map((individualPost) => (
-            <UserPost {...individualPost} key={individualPost.post.id} />
+            <UserPost {...individualPost} key={individualPost.post.id} onPostDeleted={handleFeedUpdate} />
           ))}
         </div>
       </div>

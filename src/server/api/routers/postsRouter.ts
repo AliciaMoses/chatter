@@ -36,6 +36,15 @@ export const postsRouter = createTRPCRouter({
       });
     }),
 
+  delete: privateProcedure
+    .input(z.object({ postId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      return await postsController.delete({
+        postId: input.postId,
+        userId: ctx.userId,
+      });
+    }),
+
   getPostLikes: publicProcedure
     .input(z.object({ postId: z.string() }))
     .query(async ({ input }) => {

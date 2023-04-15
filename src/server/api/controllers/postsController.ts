@@ -146,6 +146,24 @@ getUserLike: async (postId: string, userId?: string) => {
   });
   return { isLiked: likes.length > 0, count: likes.length };
 },
+delete: async ({ postId, userId }: { postId: string; userId: string }) => {
+ 
+  const post = await prisma.posts.findUnique({
+    where: { id: postId },
+  });
+
+  if (!post) {
+    throw new TRPCError({ code: "NOT_FOUND" });
+  }
+
+  if (post.authorId !== userId) {
+    throw new TRPCError({ code: "UNAUTHORIZED" });
+  }
+
+  await prisma.posts.delete({
+    where: { id: postId },
+  });
+},
 
 };
 
