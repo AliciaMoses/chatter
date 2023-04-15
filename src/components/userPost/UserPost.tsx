@@ -8,7 +8,7 @@ import { useUser } from "@clerk/clerk-react";
 
 type IndividualPost = RouterOutputs["posts"]["getAll"][number];
 
-const UserPost = (props: IndividualPost & { onPostDeleted: () => void } ) => {
+const UserPost = (props: IndividualPost & { onPostDeleted?: () => void } ) => {
   const { user } = useUser();
 
   const { post, author } = props;
@@ -40,7 +40,9 @@ const UserPost = (props: IndividualPost & { onPostDeleted: () => void } ) => {
   const deletePostMutation = api.posts.delete.useMutation({
     onSuccess: () => {
       console.log("post deleted")
-      props.onPostDeleted();
+      if (props.onPostDeleted) {
+        props.onPostDeleted();
+      }
     },
   });
 
