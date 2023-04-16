@@ -1,4 +1,12 @@
 const deletePostModal = ()  => {
+
+    const confirmDelete = () => {
+      return;
+    }
+
+    const toggleDeleteModal = () => {
+      return;
+    }
     
     return (
         <>
