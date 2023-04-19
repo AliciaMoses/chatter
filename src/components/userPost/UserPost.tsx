@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import type { RouterOutputs } from "~/utils/api";
 import Link from "next/link";
 import { api } from "~/utils/api";
@@ -5,16 +6,20 @@ import Image from "next/image";
 import { differenceInDays } from "date-fns";
 import { formatDistanceToNow } from "date-fns";
 import { useUser } from "@clerk/clerk-react";
+import { useDeletePost } from "../../components/deletePostModal/useDeletePost";
+import DeletePostModal from '../deletePostModal/deletePostModal';
 
 type IndividualPost = RouterOutputs["posts"]["getAll"][number];
 
 const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
   const { user } = useUser();
+  const { deletePost } = useDeletePost();
 
   const { post, author } = props;
   const { data: likes, refetch: refetchLikes } =
     api.posts.getPostLikes.useQuery({ postId: post.id });
-  const { data: userLike, refetch: refetchUserLike } =
+  
+    const { data: userLike, refetch: refetchUserLike } =
     api.posts.getUserLike.useQuery({
       postId: post.id,
       userId: user?.id,
@@ -29,6 +34,15 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
         })
       : postDate.toLocaleDateString();
 
+
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleModalToggle = () => {
+    setModalOpen(!modalOpen);
+  };
+
+
+
   const toggleLikeMutation = api.posts.toggleLike.useMutation({
     onSuccess: () => {
       refetchLikes()
@@ -37,33 +51,6 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
     },
   });
 
-  const deletePostMutation = api.posts.delete.useMutation({
-    onSuccess: () => {
-      console.log("post deleted");
-      if (props.onPostDeleted) {
-        props.onPostDeleted();
-      }
-    },
-  });
-
-  const deletePost = async (): Promise<void> => {
-    try {
-      if (!user || user.id !== author.id) {
-        return;
-      }
-      return await deletePostMutation.mutateAsync({ postId: post.id });
-    } catch (error) {
-      throw error;
-    }
-  };
-
-  const handleDeleteClick = (): void => {
-    deletePost()
-      .then()
-      .catch((result) => {
-        console.error("error", result);
-      });
-  };
 
   const userLiked = userLike && userLike.isLiked;
 
@@ -86,8 +73,23 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
       });
   };
 
+  const handleDeleteClick = () => {
+    handleDelete().catch((error) => {
+      console.error("Error occurred while deleting the post: ", error);
+    });
+  };
+
+
+  const handleDelete = async (): Promise<void> => {
+    await deletePost(post.id, author.id);
+    handleModalToggle();
+    props.onPostDeleted && props.onPostDeleted();
+  };
+
   return (
     <>
+  
+
       <Link href={`/post/${post.id}`}>
         <div
           key={post.id}
@@ -105,6 +107,7 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
                 />
               </Link>
             </div>
+            
 
             <div>
               <Link href={`/post/${post.id}`}>
@@ -161,7 +164,7 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
             {user && user.id === author.id && (
               <Link href="">
                 <button
-                  onClick={handleDeleteClick}
+                  onClick={handleModalToggle}
                   className="rounded-md  px-2 py-1 font-mono text-sm text-red-500"
                 >
                   <svg
@@ -185,6 +188,14 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
         </div>
       </Link>
       <br></br>
+      <DeletePostModal
+        isOpen={modalOpen}
+        onClose={handleModalToggle}
+        onDelete={handleDeleteClick}
+      >
+        <h2 className="text-2xl font-bold">Confirm Delete</h2>
+        <p>Are you sure you want to delete this post?</p>
+      </DeletePostModal>
     </>
   );
 };

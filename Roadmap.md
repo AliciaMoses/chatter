@@ -31,7 +31,7 @@
 - [] Add emoji button functionality
 - [x] Add delete button
 - [] Add enter to send confirmation
-- [] Add delete post modal confirmation
+- [x] Add delete post modal confirmation
 
 ## UI
 
