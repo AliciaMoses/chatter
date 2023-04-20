@@ -2,10 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+nav{
+  font-family: 'Courier New', monospace;
+}
 
 body {
     @apply bg-gradient-to-tr from-slate-100 to-slate-50;
-  
+    
+    font-family: 'Courier New', monospace;
     overscroll-behavior: none;
   }
   
