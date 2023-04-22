@@ -5,12 +5,16 @@ import {
   SignedIn,
   UserButton,
 } from "@clerk/nextjs";
+import { useRouter } from 'next/router';
+
 
 import Link from "next/link";
 
-
 const Navbar: React.FC = () => {
   const user = useUser();
+  const router = useRouter();
+  const currentPage = router.pathname;
+
 
   return (
     <nav
@@ -26,26 +30,54 @@ const Navbar: React.FC = () => {
         </a>
       </div>
 
-      <div className="hidden lg:flex lg:gap-x-12">
-        {user.isSignedIn && (
-          <>
-            <Link href="/feed">Home</Link>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </>
-        )}
-      </div>
+      <div className="hidden lg:flex lg:gap-x-12 items-center">
+      {user.isSignedIn && (
+        <>
+          {currentPage === "/feed" ? (
+            <Link href="/">
+              <button
+                type="button"
+                className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+              >
+                Home
+              </button>
+            </Link>
+          ) : (
+            <Link href="/feed">
+              <button
+                type="button"
+                className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+              >
+                Feed
+              </button>
+            </Link>
+          )}
+          <Link href="/profile">
+            <button
+              type="button"
+              className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+            >
+              Profile
+            </button>
+          </Link>
+
+          <SignedIn>
+            <UserButton />
+          </SignedIn>
+        </>
+      )}
+    </div>
+
       <div className="hidden lg:flex lg:flex-1 lg:justify-end">
         {user.isSignedIn ? (
           <SignOutButton>
-            <a className="text-sm font-semibold leading-6 text-slate-400 cursor-pointer">
+            <a className="cursor-pointer text-sm font-semibold leading-6 text-slate-400">
               Log out <span aria-hidden="true">&rarr;</span>
             </a>
           </SignOutButton>
         ) : (
           <SignInButton mode="modal" afterSignInUrl="/feed">
-            <a className="text-sm font-semibold leading-6 text-slate-400 cursor-pointer">
+            <a className="cursor-pointer text-sm font-semibold leading-6 text-slate-400">
               Log in <span aria-hidden="true">&rarr;</span>
             </a>
           </SignInButton>
