@@ -16,7 +16,7 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
-    "module": "es2022",
+    "module": "esnext",
     "target": "es2017",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -38,14 +38,14 @@
     "**/*.tsx",
     "**/*.cjs",
     "**/*.mjs",
-    "cypress/**/*.ts"
+    "cypress/**/*.ts",
+    "src/server/spec/*" 
   ],
   "exclude": [
     "./tests/",
     "./node_modules/",
     "./dist/",
-    "cypress/**/*.ts",
-    "**/*.spec.ts"
-  ], 
-  "types": []
+    "cypress/**/*"
+  ],
+  "types": ["jest"]
 }

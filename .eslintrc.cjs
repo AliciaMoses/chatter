@@ -13,6 +13,12 @@ const config = {
         project: path.join(__dirname, "tsconfig.json"),
       },
     },
+    {
+      files: ["src/server/spec/*"],
+      parserOptions: {
+        project: path.join(__dirname, "tsconfig.json"),
+      },
+    },
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
