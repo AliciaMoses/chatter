@@ -11,7 +11,7 @@ const Home: NextPage = () => {
     <>
       <Head>
         <title>Chatter</title>
-        <meta name="description" content="Welcome to the Chattersphere! " />
+        <meta name="description" content="Welcome to the Chattersphere!" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Navbar />
