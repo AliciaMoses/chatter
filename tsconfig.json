@@ -43,6 +43,9 @@
   "exclude": [
     "./tests/",
     "./node_modules/",
-    "./dist/"
-  ]
+    "./dist/",
+    "cypress/**/*.ts",
+    "**/*.spec.ts"
+  ], 
+  "types": []
 }
