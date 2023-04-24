@@ -1,5 +1,4 @@
-
-import React from 'react';
+import React from "react";
 
 type DeletePostModalProps = {
   isOpen: boolean;
@@ -22,28 +21,40 @@ const DeletePostModal = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
-      <div className="relative w-auto max-w-3xl mx-auto">
-        <div className="relative flex flex-col w-full bg-white border-0 rounded-lg shadow-lg">
-          <div className="relative p-6 flex-auto">{children}</div>
-          <div
-            className="absolute top-0 right-0 p-2 "
-          >
-            <button className="px-4 py-2 text-slate-600 border-0 rounded hover:text-red-600 focus:outline-none"
+    <div className="fixed inset-0 z-50 flex items-center justify-center overflow-y-auto overflow-x-hidden outline-none focus:outline-none">
+      <div className="relative mx-auto w-auto max-w-3xl">
+        <div className="relative flex w-full flex-col rounded-lg border-0 bg-white shadow-lg">
+          <div className="relative flex-auto p-6">{children}</div>
+          <div className="absolute right-0 top-0 p-2 ">
+            <button
+              className="rounded border-0 px-4 py-2 text-slate-600 hover:text-red-600 focus:outline-none"
               onClick={onClose}
             >
-              x
+              <svg
+                className="h-8 w-8 text-red-400"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                {" "}
+                <circle cx="12" cy="12" r="10" />{" "}
+                <line x1="15" y1="9" x2="9" y2="15" />{" "}
+                <line x1="9" y1="9" x2="15" y2="15" />
+              </svg>
             </button>
           </div>
-          <div className="flex items-center justify-end p-6 border-t border-solid border-gray-300 rounded-b">
+          <div className="flex items-center justify-end rounded-b border-t border-solid border-gray-300 p-6">
             <button
-              className="px-4 py-2 mr-2 text-white bg-red-500 border-0 rounded hover:bg-red-600 focus:outline-none"
+              className="mr-2 rounded border-0 bg-rose-400 px-4 py-2 text-slate-800 hover:bg-red-600 focus:outline-none"
               onClick={handleDelete}
             >
               Delete
             </button>
             <button
-              className="px-4 py-2 text-white bg-gray-500 border-0 rounded hover:bg-gray-600 focus:outline-none"
+              className="rounded border-0 bg-gray-500 px-4 py-2 text-white hover:bg-gray-600 focus:outline-none"
               onClick={onClose}
             >
               Cancel

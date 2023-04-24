@@ -11,7 +11,7 @@ const ProfileFeed: React.FC<{ userId: string }> = ({ userId }) => {
 
   return (
     <div className="py-869 flex min-h-full items-center justify-center px-4 sm:px-6 lg:px-8">
-      <div className="w-full max-w-md space-y-4">
+      <div className="w-full max-w-xl space-y-4">
         {data.map((post) => (
           <UserPost {...post} key={post.post.id} />
         ))}

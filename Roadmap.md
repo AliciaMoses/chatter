@@ -32,6 +32,7 @@
 - [x] Add delete button
 - [] Add enter to send confirmation
 - [x] Add delete post modal confirmation
+- [] Debug individual profile post routing
 
 ## UI
 

@@ -100,17 +100,19 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
                 />
               </Link>
             </div>
-
+             
             <div>
+            <br></br>
               <Link href={`/post/${post.id}`}>
                 <span className="postContent mb-2 text-2xl font-semibold text-slate-600">
                   {post.content}
                 </span>
               </Link>
-              <br></br>
+             
               <Link href={`/profile/@${author.username}`}>
                 <div>
-                  <span className="postAuthor font-mono text-sm text-gray-500">
+                  <br></br>
+                  <span className="postAuthor font-mono text-sm text-indigo-500">
                     @{author.username}
                   </span>
                   <span className="ml-2  font-mono text-sm  font-extralight  text-gray-400">
@@ -126,7 +128,7 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
               <button
                 onClick={handleLikeClick}
                 className={`h-6 w-6 ${
-                  userLiked ? "font-bold text-indigo-400 " : "text-gray-500 hover:text-indigo-400"
+                  userLiked ? "font-bold text-indigo-400 " : "text-slate-300 hover:text-indigo-400"
                 }`}
               >
                
@@ -147,14 +149,14 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
                   </svg>
                 <span
                   className={`h-6 w-6  font-mono ${
-                    userLiked ? "text-indigo-600" : "text-gray-500"
+                    userLiked ? "text-indigo-600" : "text-slate-500"
                   }`}
                 >
                 {likes}
                 </span>
               </button>
             </Link>
-
+            <Link href="">
             {user && user.id === author.id && (
               <Link href="">
                 <button
@@ -177,8 +179,11 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
                 </button>
               </Link>
             )}
+             </Link>
           </div>
+          
         </div>
+       
       </Link>
       <br></br>
       <DeletePostModal
