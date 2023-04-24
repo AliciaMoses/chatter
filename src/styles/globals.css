@@ -1,15 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 nav{
-  font-family: 'Courier New', monospace;
+  font-family:  'IBM Plex Mono', monospace;
 }
 
 body {
-    @apply bg-gradient-to-tr from-slate-100 to-slate-50;
     
-    font-family: 'Courier New', monospace;
+    font-family:  'IBM Plex Mono', monospace;
     overscroll-behavior: none;
+    background: bg-slate-100;
   }
-  

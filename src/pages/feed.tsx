@@ -30,9 +30,10 @@ const FeedPage: NextPage = () => {
         <meta name="description" content="Welcome to the Chattersphere" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <br></br>
       <Navbar />
       <div className="py-869 flex min-h-full items-center justify-center px-4 sm:px-6 lg:px-8">
-        <div className="w-full max-w-md space-y-4">
+        <div className="w-full max-w-lg space-y-4">
           <div>{user.isSignedIn && <CreatePost onNewPostCreated={handleFeedUpdate} />}</div>
           <br />
           {data?.map((individualPost) => (

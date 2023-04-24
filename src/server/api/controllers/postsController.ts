@@ -1,9 +1,9 @@
 import { TRPCError } from "@trpc/server";
-import { clerkClient } from "~/server/clerkClientWrapper";
+import { clerkClient } from "../../clerkClientWrapper";
 import { PrismaClient } from "@prisma/client";
 import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
-import { filterUserForClient } from "~/server/helpers/filterUserForClient";
+import { filterUserForClient } from "../../helpers/filterUserForClient";
 import type { Posts } from "@prisma/client";
 
 const prisma = new PrismaClient();

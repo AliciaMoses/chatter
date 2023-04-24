@@ -111,7 +111,7 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
 
             <div>
               <Link href={`/post/${post.id}`}>
-                <span className="postContent mb-2 font-mono text-2xl">
+                <span className="postContent mb-2 font-semibold text-slate-600 text-2xl">
                   {post.content}
                 </span>
               </Link>
