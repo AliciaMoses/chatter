@@ -14,3 +14,31 @@ body {
     overscroll-behavior: none;
     background: bg-slate-100;
   }
+
+  .typewriter {
+    overflow: hidden;
+    border-right: 0.15em solid transparent;
+    white-space: nowrap;
+    animation: typewriter 4s steps(40, end),
+               blink-caret 0.5s step-end infinite alternate;
+  }
+  
+  @keyframes typewriter {
+    0% {
+      width: 0;
+    }
+    100% {
+      width: 100%;
+    }
+  }
+  
+  @keyframes blink-caret {
+    0%,
+    100% {
+      border-color: transparent;
+    }
+    50% {
+      border-color: black;
+    }
+  }
+  

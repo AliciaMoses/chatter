@@ -15,15 +15,15 @@ const LandingPage = () => {
         <div className="mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
           <div className="lg:pr-8 lg:pt-4">
             <div className="lg:max-w-lg">
-              <p className="mt-2  text-3xl font-black tracking-tight text-slate-600 sm:text-4xl">
-                Welcome, this is Chatter,
-              </p>
-              <p className="mt-6  text-lg leading-8 text-gray-600">
-                an open space to share your thoughts.
-              </p>
-              <p className="mt-6  text-lg leading-8 text-gray-600">
-                All you need is a GitHub account to get started...
-              </p>
+              <div className="relative inline-block">
+                <div className="relative inline-block">
+                  <pre className="font-VT323 typewriter text-3xl font-black tracking-tight text-slate-600 sm:text-4xl">
+                    {`Hello, this is Chatter :)`}
+                  </pre>
+                  <div className="typewriter-cursor absolute inset-0"></div>
+                </div>
+              </div>
+
               <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none"></dl>
               {user.isSignedIn ? (
                 <Link href="/feed">
