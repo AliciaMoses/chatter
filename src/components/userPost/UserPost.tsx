@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import type { RouterOutputs } from "~/utils/api";
 import Link from "next/link";
 import { api } from "~/utils/api";
@@ -7,7 +7,7 @@ import { differenceInDays } from "date-fns";
 import { formatDistanceToNow } from "date-fns";
 import { useUser } from "@clerk/clerk-react";
 import { useDeletePost } from "../../components/deletePostModal/useDeletePost";
-import DeletePostModal from '../deletePostModal/deletePostModal';
+import DeletePostModal from "../deletePostModal/deletePostModal";
 
 type IndividualPost = RouterOutputs["posts"]["getAll"][number];
 
@@ -18,8 +18,8 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
   const { post, author } = props;
   const { data: likes, refetch: refetchLikes } =
     api.posts.getPostLikes.useQuery({ postId: post.id });
-  
-    const { data: userLike, refetch: refetchUserLike } =
+
+  const { data: userLike, refetch: refetchUserLike } =
     api.posts.getUserLike.useQuery({
       postId: post.id,
       userId: user?.id,
@@ -34,14 +34,11 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
         })
       : postDate.toLocaleDateString();
 
-
   const [modalOpen, setModalOpen] = useState(false);
 
   const handleModalToggle = () => {
     setModalOpen(!modalOpen);
   };
-
-
 
   const toggleLikeMutation = api.posts.toggleLike.useMutation({
     onSuccess: () => {
@@ -50,7 +47,6 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
         .catch((error) => console.error("Error", error));
     },
   });
-
 
   const userLiked = userLike && userLike.isLiked;
 
@@ -79,7 +75,6 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
     });
   };
 
-
   const handleDelete = async (): Promise<void> => {
     await deletePost(post.id, author.id);
     handleModalToggle();
@@ -88,8 +83,6 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
 
   return (
     <>
-  
-
       <Link href={`/post/${post.id}`}>
         <div
           key={post.id}
@@ -107,11 +100,10 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
                 />
               </Link>
             </div>
-            
 
             <div>
               <Link href={`/post/${post.id}`}>
-                <span className="postContent mb-2 font-semibold text-slate-600 text-2xl">
+                <span className="postContent mb-2 text-2xl font-semibold text-slate-600">
                   {post.content}
                 </span>
               </Link>
@@ -134,29 +126,31 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
               <button
                 onClick={handleLikeClick}
                 className={`h-6 w-6 ${
-                  userLiked ? "text-sky-500" : "text-gray-500"
+                  userLiked ? "font-bold text-indigo-400 " : "text-gray-500 hover:text-indigo-400"
                 }`}
               >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  strokeWidth={1.5}
-                  stroke="currentColor"
-                  className="h-6 w-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    d="M6.633 10.5c.806 0 1.533-.446 2.031-1.08a9.041 9.041 0 012.861-2.4c.723-.384 1.35-.956 1.653-1.715a4.498 4.498 0 00.322-1.672V3a.75.75 0 01.75-.75A2.25 2.25 0 0116.5 4.5c0 1.152-.26 2.243-.723 3.218-.266.558.107 1.282.725 1.282h3.126c1.026 0 1.945.694 2.054 1.715.045.422.068.85.068 1.285a11.95 11.95 0 01-2.649 7.521c-.388.482-.987.729-1.605.729H13.48c-.483 0-.964-.078-1.423-.23l-3.114-1.04a4.501 4.501 0 00-1.423-.23H5.904M14.25 9h2.25M5.904 18.75c.083.205.173.405.27.602.197.4-.078.898-.523.898h-.908c-.889 0-1.713-.518-1.972-1.368a12 12 0 01-.521-3.507c0-1.553.295-3.036.831-4.398C3.387 10.203 4.167 9.75 5 9.75h1.053c.472 0 .745.556.5.96a8.958 8.958 0 00-1.302 4.665c0 1.194.232 2.333.654 3.375z"
-                  />
-                </svg>
+               
+                  <svg
+                    className="h-8 w-8"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    fill="none"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+            
+                   
+                    <path d="M7 11v 8a1 1 0 0 1 -1 1h-2a1 1 0 0 1 -1 -1v-7a1 1 0 0 1 1 -1h3a4 4 0 0 0 4 -4v-1a2 2 0 0 1 4 0v5h3a2 2 0 0 1 2 2l-1 5a2 3 0 0 1 -2 2h-7a3 3 0 0 1 -3 -3" />
+                  </svg>
                 <span
                   className={`h-6 w-6  font-mono ${
-                    userLiked ? "text-sky-500" : "text-gray-500"
+                    userLiked ? "text-indigo-600" : "text-gray-500"
                   }`}
                 >
-                  {likes}
+                {likes}
                 </span>
               </button>
             </Link>
@@ -165,20 +159,19 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
               <Link href="">
                 <button
                   onClick={handleModalToggle}
-                  className="rounded-md  px-2 py-1 font-mono text-sm text-red-500"
+                  className="rounded-md  px-2 py-1 font-mono text-sm text-slate-300 hover:text-rose-300"
                 >
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-8 w-8"
                     fill="none"
                     viewBox="0 0 24 24"
-                    stroke-width="1.5"
                     stroke="currentColor"
-                    className="h-6 w-6"
                   >
                     <path
                       stroke-linecap="round"
                       stroke-linejoin="round"
-                      d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0"
+                      stroke-width="2"
+                      d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"
                     />
                   </svg>
                 </button>
