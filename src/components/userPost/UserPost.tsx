@@ -8,6 +8,7 @@ import { formatDistanceToNow } from "date-fns";
 import { useUser } from "@clerk/clerk-react";
 import { useDeletePost } from "../../components/deletePostModal/useDeletePost";
 import DeletePostModal from "../deletePostModal/deletePostModal";
+import { useRouter } from 'next/router';
 
 type IndividualPost = RouterOutputs["posts"]["getAll"][number];
 
@@ -80,6 +81,9 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
     handleModalToggle();
     props.onPostDeleted && props.onPostDeleted();
   };
+
+  const router = useRouter();
+  const deleteButtonHref = router.asPath;
 
   return (
     <>
@@ -158,7 +162,7 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
             </Link>
             <Link href="">
             {user && user.id === author.id && (
-              <Link href="">
+               <Link href={deleteButtonHref}>
                 <button
                   onClick={handleModalToggle}
                   className="rounded-md  px-2 py-1 font-mono text-sm text-slate-300 hover:text-rose-300"

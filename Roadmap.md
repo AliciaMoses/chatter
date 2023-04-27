@@ -32,7 +32,7 @@
 - [x] Add delete button
 - [] Add enter to send confirmation
 - [x] Add delete post modal confirmation
-- [] Debug individual profile post routing
+- [x] Debug individual profile post routing
 
 ## UI
 
@@ -41,7 +41,17 @@
 - [] Add dymanic page titles
 - [] Add loading animations 
 - [x] Add automatic feed update after posts
+- [] Adjust user profile image size on post 
 
 ## Planning & Design 
 
 - [] Final mockups
+
+
+
+## Code Quality 
+
+- [] Segregate functions from components files 
+- [] Move CSS styling rules out of individual components -> Create global styles 
+
+
