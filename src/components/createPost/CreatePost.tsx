@@ -70,11 +70,11 @@ const CreatePost: FC<CreatePostProps> = ({ onNewPostCreated }) => {
     <>
       <form onSubmit={handleSubmit}>
         <label className="sr-only">Your message</label>
-        <div className="flex items-center rounded-lg border border-solid border-slate-200 bg-slate-100 p-4 px-3 py-2 pb-8 pt-8 shadow-md">
+        <div className="flex items-center rounded-lg  border-2 border-solid border-violet-800 p-4 px-3 py-2 pb-8 pt-8 shadow-lg shadow-violet-100">
           <button
             type="button"
             onClick={() => setEmojiPickerVisible(!emojiPickerVisible)}
-            className="hover:bg-gray-1000 cursor-pointer rounded-lg p-2 text-slate-400 hover:text-gray-900"
+            className="hover:bg-gray-1000 cursor-pointer rounded-lg p-2 text-violet-400 hover:text-violet-900"
           >
             <svg
               aria-hidden="true"
@@ -100,7 +100,7 @@ const CreatePost: FC<CreatePostProps> = ({ onNewPostCreated }) => {
         </div>
           <textarea
             ref={textareaRef}
-            className={`mx-4 block w-full rounded-lg bg-slate-100 p-2.5  font-mono text-sm text-gray-900 shadow-inner focus:border-${
+            className={`mx-4 block w-full rounded-lg border-2 bg-violet-100 p-2.5  font-mono text-sm text-gray-900 shadow-inner shadow-violet-400 focus:border-${
               input.length > charLimit ? "red-500" : "slate-300"
             } focus:ring-${input.length > charLimit ? "red-500" : "slate-300"}`}
             placeholder="Share your thoughts..."

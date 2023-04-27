@@ -90,7 +90,7 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
       <Link href={`/post/${post.id}`}>
         <div
           key={post.id}
-          className="flex flex-col rounded-lg border border-solid  border-slate-200 bg-slate-100 p-4 shadow-md"
+          className="flex flex-col rounded-lg  border-solid  border-violet-800 border-2  p-4 shadow-lg shadow-violet-300 "
         >
           <div className="mb-4 flex">
             <div className="postAuthorImg mr-4">
@@ -108,7 +108,7 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
             <div>
             <br></br>
               <Link href={`/post/${post.id}`}>
-                <span className="postContent mb-2 text-2xl font-semibold text-slate-600">
+                <span className="postContent mb-2 text-2xl font-semibold text-slate-800">
                   {post.content}
                 </span>
               </Link>
@@ -116,7 +116,7 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
               <Link href={`/profile/@${author.username}`}>
                 <div>
                   <br></br>
-                  <span className="postAuthor font-mono text-sm text-indigo-500">
+                  <span className="postAuthor font-mono text-sm text-violet-500">
                     @{author.username}
                   </span>
                   <span className="ml-2  font-mono text-sm  font-extralight  text-gray-400">
@@ -132,7 +132,7 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
               <button
                 onClick={handleLikeClick}
                 className={`h-6 w-6 ${
-                  userLiked ? "font-bold text-indigo-400 " : "text-slate-300 hover:text-indigo-400"
+                  userLiked ? "font-bold text-violet-400 " : "text-slate-300 hover:text-indigo-400"
                 }`}
               >
                
@@ -153,7 +153,7 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
                   </svg>
                 <span
                   className={`h-6 w-6  font-mono ${
-                    userLiked ? "text-indigo-600" : "text-slate-500"
+                    userLiked ? "text-violet-600" : "text-slate-500"
                   }`}
                 >
                 {likes}
