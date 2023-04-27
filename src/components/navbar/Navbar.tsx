@@ -26,6 +26,7 @@ const Navbar: React.FC = () => {
 
   const currentUsername = user?.user?.username || "";
   const isOnOwnProfile = currentAsPath === `/profile/@${currentUsername}`;
+  const isPostView = currentPage.startsWith("/post"); 
 
   return (
     <nav
@@ -43,7 +44,7 @@ const Navbar: React.FC = () => {
       <div className="hidden items-center lg:flex lg:gap-x-12">
         {user.isSignedIn && (
           <>
-            {currentPage !== "/" && (
+            {(currentPage !== "/" || isPostView) && (
               <Link href="/">
                 <button
                   type="button"
@@ -53,7 +54,7 @@ const Navbar: React.FC = () => {
                 </button>
               </Link>
             )}
-            {currentPage !== "/feed" && (
+            {(currentPage !== "/feed" || isPostView) && (
               <Link href="/feed">
                 <button
                   type="button"
@@ -63,7 +64,7 @@ const Navbar: React.FC = () => {
                 </button>
               </Link>
             )}
-            {!isOnOwnProfile && (
+            {(!isOnOwnProfile || isPostView) && (
               <Link href={`/profile/@${currentUsername}`}>
                 <button
                   type="button"

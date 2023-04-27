@@ -3,6 +3,7 @@ import Head from "next/head";
 import { api } from "~/utils/api";
 import UserPost from "~/components/userPost/UserPost";
 import NotFound from "~/components/notFound/NotFound";
+import Navbar from "~/components/navbar/Navbar";
 
 type PostViewProps = {
   id: string;
@@ -16,10 +17,11 @@ const PostView: NextPage<PostViewProps> = ({ id }) => {
 
   return (
     <>
+    
       <Head>
         <title>{`${data.post.content} - @${data.author.username}`}</title>
       </Head>
-
+      <Navbar/>
       <UserPost {...data} />
     </>
   );
