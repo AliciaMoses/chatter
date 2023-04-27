@@ -28,7 +28,7 @@
 ## Post Functions 
 
 - [x] Add like button functionality
-- [] Add emoji button functionality
+- [x] Add emoji button functionality
 - [x] Add delete button
 - [] Add enter to send confirmation
 - [x] Add delete post modal confirmation
@@ -41,3 +41,7 @@
 - [] Add dymanic page titles
 - [] Add loading animations 
 - [x] Add automatic feed update after posts
+
+## Planning & Design 
+
+- [] Final mockups
