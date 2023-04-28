@@ -13,21 +13,32 @@ const PostView: NextPage<PostViewProps> = ({ id }) => {
   const { data } = api.posts.getById.useQuery({
     id,
   });
-  if (!data) return <div><NotFound /></div>;
+  if (!data)
+    return (
+      <div>
+        <NotFound />
+      </div>
+    );
 
   return (
     <>
-    
       <Head>
         <title>{`${data.post.content} - @${data.author.username}`}</title>
       </Head>
-      <Navbar/>
-      <UserPost {...data} />
+      <Navbar />
+      <br></br>
+      <div className="flex justify-center">
+        <div className="w-full max-w-4xl">
+          <UserPost {...data} />
+        </div>
+      </div>
     </>
   );
 };
 
-export const getServerSideProps: GetServerSideProps<PostViewProps> = (context) => {
+export const getServerSideProps: GetServerSideProps<PostViewProps> = (
+  context
+) => {
   const { id } = context.query;
 
   if (!id || Array.isArray(id)) {
