@@ -4,15 +4,15 @@ import { api } from "~/utils/api";
 import UserPost from "~/components/userPost/UserPost";
 import NotFound from "~/components/notFound/NotFound";
 import Navbar from "~/components/navbar/Navbar";
+import LoadingPosts from "~/components/loadingPosts/loadingPosts";
 
 type PostViewProps = {
   id: string;
 };
 
 const PostView: NextPage<PostViewProps> = ({ id }) => {
-  const { data } = api.posts.getById.useQuery({
-    id,
-  });
+  const { data, status } = api.posts.getById.useQuery({ id });
+  if (status === "loading") return <LoadingPosts />;
   if (!data)
     return (
       <div>
