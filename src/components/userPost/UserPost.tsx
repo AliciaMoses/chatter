@@ -62,7 +62,8 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
     }
   };
 
-  const handleLikeClick = (): void => {
+  const handleLikeClick = (event: React.MouseEvent): void => {
+    event.preventDefault();
     likePost()
       .then()
       .catch((result) => {
@@ -130,7 +131,7 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
           <div className="flex w-full items-center justify-between">
             <Link href="">
               <button
-                onClick={handleLikeClick}
+                onClick={(event) => handleLikeClick(event)}
                 className={`h-6 w-6 ${
                   userLiked ? "font-bold text-violet-400 " : "text-slate-300 hover:text-indigo-400"
                 }`}

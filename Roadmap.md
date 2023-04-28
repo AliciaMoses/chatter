@@ -41,7 +41,7 @@
 - [] Change favicon 
 - [] Style buttons 
 - [] Add dymanic page titles
-- [] Add loading animations 
+- [x] Add loading animations 
 - [x] Add automatic feed update after posts
 - [] Adjust user profile image size on post 
 
@@ -55,8 +55,13 @@
 
 - [] Segregate functions from components files 
 - [] Move CSS styling rules out of individual components -> Create global styles / themes
+- [] Convert consts into react components where required
 
 ## Performance 
 
 - [] Test lazy loading of emoji picker to improve performance 
 
+
+## Bug Fixes
+
+- [x] fix user like reloading feed 
