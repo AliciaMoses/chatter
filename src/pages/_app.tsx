@@ -5,7 +5,7 @@ import { api } from "~/utils/api";
 
 import "~/styles/globals.css";
 
-const MyApp: AppType = ({ Component, pageProps }) => {
+const ChatterApp: AppType = ({ Component, pageProps }) => {
   return  (
   <ClerkProvider {...pageProps}>
     <Component {...pageProps} />
@@ -13,4 +13,4 @@ const MyApp: AppType = ({ Component, pageProps }) => {
   );
 };
 
-export default api.withTRPC(MyApp);
+export default api.withTRPC(ChatterApp);
