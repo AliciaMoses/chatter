@@ -3,10 +3,12 @@ import { api } from "~/utils/api";
 import UserPost from "~/components/userPost/UserPost";
 import NotFound from "~/components/notFound/NotFound";
 import Navbar from "~/components/navbar/Navbar";
+import LoadingPosts from "~/components/loadingPosts/loadingPosts";
 
 const ProfileFeed: React.FC<{ userId: string }> = ({ userId }) => {
-  const { data } = api.posts.getPostsByUserId.useQuery({ userId });
+  const { data, status } = api.posts.getPostsByUserId.useQuery({ userId });
 
+  if (status === "loading") return <LoadingPosts />;
   if (!data || data.length === 0) return <div>User has not posted</div>;
 
   return (
@@ -21,7 +23,9 @@ const ProfileFeed: React.FC<{ userId: string }> = ({ userId }) => {
 };
 
 const Profile: NextPage<{ username: string }> = ({ username }) => {
-  const { data } = api.profiles.getUserByUsername.useQuery({ username });
+  const { data, status } = api.profiles.getUserByUsername.useQuery({ username });
+
+  if (status === "loading") return <LoadingPosts />;
 
   if (!data)
     return (
