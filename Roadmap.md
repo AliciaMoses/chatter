@@ -18,6 +18,8 @@
 ## User-user Interactions
 
 - [] Add follow / unfollow button 
+
+
 ## Data Rendering 
 
 - [x] Adjust / postsview to a limited number 
@@ -45,13 +47,16 @@
 
 ## Planning & Design 
 
-- [] Final mockups
+- [] Add in Final mockups
 
 
 
 ## Code Quality 
 
 - [] Segregate functions from components files 
-- [] Move CSS styling rules out of individual components -> Create global styles 
+- [] Move CSS styling rules out of individual components -> Create global styles / themes
 
+## Performance 
+
+- [] Test lazy loading of emoji picker to improve performance 
 

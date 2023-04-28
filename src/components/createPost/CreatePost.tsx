@@ -4,8 +4,6 @@ import { useState, useRef } from "react";
 import type { FC } from "react";
 import Picker from "emoji-picker-react";
 
-
-
 interface CreatePostProps {
   onNewPostCreated: (created: boolean) => void;
 }
@@ -52,19 +50,16 @@ const CreatePost: FC<CreatePostProps> = ({ onNewPostCreated }) => {
   const onEmojiSelect = (emojiData: EmojiData, event: MouseEvent) => {
     event.stopPropagation();
     const emoji = emojiData.emoji;
-  
+
     if (textareaRef.current) {
       const start = textareaRef.current.selectionStart || 0;
       const end = textareaRef.current.selectionEnd || 0;
       const newValue = input.substring(0, start) + emoji + input.substring(end);
-  
+
       setInput(newValue);
       textareaRef.current.focus();
     }
   };
-  
-  
-  
 
   return (
     <>
@@ -92,12 +87,12 @@ const CreatePost: FC<CreatePostProps> = ({ onNewPostCreated }) => {
             <span className="sr-only">Add emoji</span>
           </button>
           <div className="relative">
-          {emojiPickerVisible && (
-            <div className="absolute z-10">
-              <Picker onEmojiClick={onEmojiSelect} />
-            </div>
-          )}
-        </div>
+            {emojiPickerVisible && (
+              <div className="absolute z-10">
+                <Picker onEmojiClick={onEmojiSelect} />
+              </div>
+            )}
+          </div>
           <textarea
             ref={textareaRef}
             className={`mx-4 block w-full rounded-lg border-2 bg-violet-100 p-2.5  font-mono text-sm text-gray-900 shadow-inner shadow-violet-400 focus:border-${
