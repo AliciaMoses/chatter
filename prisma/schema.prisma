@@ -24,7 +24,7 @@ model Posts {
 model Likes {
   id         String  @id @default(cuid())
   authorId   String
-  post       Posts   @relation(fields: [postId], references: [id])
+  post       Posts   @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId     String
 
   @@unique([authorId, postId]) // Ensures a user can like a post only once
