@@ -1,6 +1,6 @@
 import { useUser } from "@clerk/clerk-react";
 import { api } from "~/utils/api";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import type { FC } from "react";
 import Picker from "emoji-picker-react";
 
@@ -17,6 +17,8 @@ const CreatePost: FC<CreatePostProps> = ({ onNewPostCreated }) => {
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
   const charLimit = 255;
   const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const emojiPickerRef = useRef<HTMLDivElement>(null);
+  const emojiButtonRef = useRef<HTMLButtonElement>(null);
 
   const { mutate } = api.posts.create.useMutation({
     onSuccess: () => {
@@ -24,6 +26,24 @@ const CreatePost: FC<CreatePostProps> = ({ onNewPostCreated }) => {
       onNewPostCreated(true);
     },
   });
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        emojiPickerRef.current &&
+        emojiButtonRef.current &&
+        !emojiPickerRef.current.contains(event.target as Node) &&
+        !emojiButtonRef.current.contains(event.target as Node)
+      ) {
+        setEmojiPickerVisible(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   if (!user) return null;
 
@@ -67,6 +87,7 @@ const CreatePost: FC<CreatePostProps> = ({ onNewPostCreated }) => {
         <label className="sr-only">Your message</label>
         <div className="flex items-center rounded-lg  border-2 border-solid border-violet-800 p-4 px-3 py-2 pb-8 pt-8 shadow-lg shadow-violet-100">
           <button
+            ref={emojiButtonRef}
             type="button"
             onClick={() => setEmojiPickerVisible(!emojiPickerVisible)}
             className="hover:bg-gray-1000 cursor-pointer rounded-lg p-2 text-violet-400 hover:text-violet-900"
@@ -86,11 +107,17 @@ const CreatePost: FC<CreatePostProps> = ({ onNewPostCreated }) => {
             </svg>
             <span className="sr-only">Add emoji</span>
           </button>
-          <div className="relative">
+          <div className="relative" ref={emojiPickerRef}>
             {emojiPickerVisible && (
               <div className="absolute z-10">
                 <Picker onEmojiClick={onEmojiSelect} />
               </div>
+            )}
+            {emojiPickerVisible && (
+              <div
+                className="absolute left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50"
+                onClick={() => setEmojiPickerVisible(false)}
+              ></div>
             )}
           </div>
           <textarea
