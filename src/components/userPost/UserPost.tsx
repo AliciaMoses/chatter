@@ -132,13 +132,13 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
             <Link href="">
               <button
                 onClick={(event) => handleLikeClick(event)}
-                className={`h-6 w-6 ${
-                  userLiked ? "font-bold text-violet-400 " : "text-slate-300 hover:text-indigo-400"
+                className={` flex  ${
+                  userLiked ? "font-bold text-violet-400 " : "text-slate-300 hover:text-violet-400"
                 }`}
               >
                
                   <svg
-                    className="h-8 w-8"
+                    className=""
                     width="24"
                     height="24"
                     viewBox="0 0 24 24"
