@@ -5,7 +5,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Courier New', 'monospace'],
+        sans: ['IBM Plex Mono', 'monospace'],
+        vt323: ['VT323', 'monospace'],
       },
     },
   },
