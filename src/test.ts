@@ -1,0 +1,1 @@
+// Creating placeholder file to test application configs for deployment
