@@ -1,0 +1,10 @@
+{
+    "outputDirectory": "out",
+    "cache": {
+      "folders": [
+        "node_modules",
+        ".cache/Cypress"
+      ]
+    }
+  }
+  
