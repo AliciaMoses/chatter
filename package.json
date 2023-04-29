@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "prebuild": "npm ci",
-    "build": "prisma generate && next build && (npm run cypress:run || true)",
+    "build": "npm install typescript @types/react eslint && prisma generate && next build && (npm run cypress:run || true)",
     "postinstall": "prisma generate && cp -r /vercel/.cache/Cypress /vercel/cache/Cypress || true",
     "dev": "next dev",
     "lint": "next lint",
