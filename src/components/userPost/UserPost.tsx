@@ -1,26 +1,25 @@
-import React, { useState } from "react";
 
+import React, { useState } from "react";
+import { useUser } from "@clerk/clerk-react";
+import { useRouter } from "next/router";
 import Link from "next/link";
-import { api } from "~/utils/api";
 import Image from "next/image";
 
-import { useUser } from "@clerk/clerk-react";
+import { api } from "~/utils/api";
 import { useDeletePost } from "../../components/deletePostModal/useDeletePost";
+import { type UserPostProps } from "./UserPost.types";
+import { calculateRelativeTime } from "./UserPost.helpers";
 import DeletePostModal from "../deletePostModal/deletePostModal";
-import { useRouter } from "next/router";
-import styles from "./UserPost.module.css";
 import LikeButton from "../likeButton/LikeButton";
 import DeleteButton from "../deleteButton/DeleteButton";
 
-
-import {type UserPostProps } from "./UserPost.types";
-import { calculateRelativeTime } from "./UserPost.helpers";
+import styles from "./UserPost.module.css";
 
 const UserPost = (props: UserPostProps) => {
   const { user } = useUser();
   const { deletePost } = useDeletePost();
-
   const { post, author } = props;
+
   const { data: likes, refetch: refetchLikes } =
     api.posts.getPostLikes.useQuery({ postId: post.id });
 
@@ -32,14 +31,10 @@ const UserPost = (props: UserPostProps) => {
 
   const postDate = new Date(post.createdAt);
   const relativeTime = calculateRelativeTime(postDate);
-
-
-
   const [modalOpen, setModalOpen] = useState(false);
-
-  const handleModalToggle = () => {
-    setModalOpen(!modalOpen);
-  };
+  const router = useRouter();
+  const deleteButtonHref = router.asPath;
+  const userLiked = userLike && userLike.isLiked;
 
   const toggleLikeMutation = api.posts.toggleLike.useMutation({
     onSuccess: () => {
@@ -48,9 +43,6 @@ const UserPost = (props: UserPostProps) => {
         .catch((error) => console.error("Error", error));
     },
   });
-
-  const userLiked = userLike && userLike.isLiked;
-
   const likePost = async (): Promise<void> => {
     try {
       if (!user) {
@@ -61,7 +53,6 @@ const UserPost = (props: UserPostProps) => {
       throw error;
     }
   };
-
   const handleLikeClick = (event: React.MouseEvent): void => {
     event.preventDefault();
     likePost()
@@ -70,21 +61,19 @@ const UserPost = (props: UserPostProps) => {
         console.error("error", result);
       });
   };
-
-  const handleDeleteClick = () => {
-    handleDelete().catch((error) => {
-      console.error("Error occurred while deleting the post: ", error);
-    });
-  };
-
   const handleDelete = async (): Promise<void> => {
     await deletePost(post.id, author.id);
     handleModalToggle();
     props.onPostDeleted && props.onPostDeleted();
   };
-
-  const router = useRouter();
-  const deleteButtonHref = router.asPath;
+  const handleModalToggle = () => {
+    setModalOpen(!modalOpen);
+  };
+  const handleDeleteClick = () => {
+    handleDelete().catch((error) => {
+      console.error("Error occurred while deleting the post: ", error);
+    });
+  };
 
   return (
     <>
@@ -98,7 +87,7 @@ const UserPost = (props: UserPostProps) => {
                   alt="Author profile image"
                   width={64}
                   height={64}
-                  className="rounded-full object-cover ring-offset-2 ring-2 shadow-md shadow-violet-700 ring-violet-800"
+                  className="rounded-full object-cover shadow-md shadow-violet-700 ring-2 ring-violet-800 ring-offset-2"
                 />
               </Link>
             </div>
@@ -106,7 +95,6 @@ const UserPost = (props: UserPostProps) => {
               <div className={styles.postUsername}>@{author.username}</div>
             </Link>
           </div>
-
           <div className={styles.postBody}>
             <div className={styles.postContent}>{post.content}</div>
             <div className={styles.postDate}>{relativeTime}</div>
@@ -119,7 +107,6 @@ const UserPost = (props: UserPostProps) => {
                 onClick={(event) => handleLikeClick(event)}
               />
             </Link>
-
             <Link href="">
               {user && user.id === author.id ? (
                 <Link href={deleteButtonHref}>
@@ -134,8 +121,8 @@ const UserPost = (props: UserPostProps) => {
             </Link>
           </div>
         </div>
-        </Link>
-        <br />
+      </Link>
+      <br />
       <DeletePostModal
         isOpen={modalOpen}
         onClose={handleModalToggle}
