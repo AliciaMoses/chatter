@@ -40,7 +40,7 @@
     "**/*.mjs",
     "cypress/**/*.ts",
     "src/server/spec/*" 
-  ],
+, "tailwind.config.ts"  ],
   "exclude": [
     "./tests/",
     "./node_modules/",

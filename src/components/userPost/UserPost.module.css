@@ -1,0 +1,30 @@
+
+
+.post {
+    @apply rounded-lg  border-2  border-solid border-violet-800  p-4 shadow-lg shadow-violet-300;
+}
+
+.postHeader{
+    @apply flex items-center space-x-4
+}
+
+
+.postBody{
+    @apply p-6
+}
+
+.postContent{
+    @apply pb-3 text-2xl font-semibold text-slate-800
+}
+
+.postDate{
+    @apply text-sm font-extralight text-gray-400
+}
+
+.postFooter{
+  @apply flex justify-between items-center
+}
+
+.postUsername{
+    @apply text-sm text-violet-500
+}
