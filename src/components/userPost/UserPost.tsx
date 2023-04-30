@@ -100,7 +100,7 @@ const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
                   alt="Author profile image"
                   width={64}
                   height={64}
-                  className="rounded-full object-cover"
+                  className="rounded-full object-cover ring-offset-2 ring-2 shadow-md shadow-violet-700 ring-violet-800"
                 />
               </Link>
             </div>
