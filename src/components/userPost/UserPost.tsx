@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import type { RouterOutputs } from "~/utils/api";
+
 import Link from "next/link";
 import { api } from "~/utils/api";
 import Image from "next/image";
@@ -12,9 +12,12 @@ import { useRouter } from "next/router";
 import styles from "./UserPost.module.css";
 import LikeButton from "../likeButton/LikeButton";
 import DeleteButton from "../deleteButton/DeleteButton";
-type IndividualPost = RouterOutputs["posts"]["getAll"][number];
 
-const UserPost = (props: IndividualPost & { onPostDeleted?: () => void }) => {
+
+import {type UserPostProps } from "./UserPost.types";
+
+
+const UserPost = (props: UserPostProps) => {
   const { user } = useUser();
   const { deletePost } = useDeletePost();
 

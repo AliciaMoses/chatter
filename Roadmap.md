@@ -35,6 +35,7 @@
 - [] Add enter to send confirmation
 - [x] Add delete post modal confirmation
 - [x] Debug individual profile post routing
+- [] See who liked a post 
 
 ## UI
 
