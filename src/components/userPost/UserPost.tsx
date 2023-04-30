@@ -3,8 +3,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { api } from "~/utils/api";
 import Image from "next/image";
-import { differenceInDays } from "date-fns";
-import { formatDistanceToNow } from "date-fns";
+
 import { useUser } from "@clerk/clerk-react";
 import { useDeletePost } from "../../components/deletePostModal/useDeletePost";
 import DeletePostModal from "../deletePostModal/deletePostModal";
@@ -15,7 +14,7 @@ import DeleteButton from "../deleteButton/DeleteButton";
 
 
 import {type UserPostProps } from "./UserPost.types";
-
+import { calculateRelativeTime } from "./UserPost.helpers";
 
 const UserPost = (props: UserPostProps) => {
   const { user } = useUser();
@@ -32,13 +31,9 @@ const UserPost = (props: UserPostProps) => {
     });
 
   const postDate = new Date(post.createdAt);
-  const daysDifference = differenceInDays(new Date(), postDate);
-  const relativeTime =
-    daysDifference < 2
-      ? formatDistanceToNow(postDate, {
-          addSuffix: true,
-        })
-      : postDate.toLocaleDateString();
+  const relativeTime = calculateRelativeTime(postDate);
+
+
 
   const [modalOpen, setModalOpen] = useState(false);
 
