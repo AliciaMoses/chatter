@@ -5,9 +5,10 @@ import {
   SignedIn,
   UserButton,
 } from "@clerk/nextjs";
-import { useRouter } from "next/router";
+import { type Router, useRouter } from 'next/router';
 
 import Link from "next/link";
+
 
 type UserObjectType = {
   isLoaded: boolean;
@@ -20,7 +21,7 @@ type UserObjectType = {
 
 const Navbar: React.FC = () => {
   const user = useUser() as UserObjectType;
-  const router = useRouter();
+  const router = useRouter() as Router;
   const currentPage = router.pathname;
   const currentAsPath = router.asPath;
 
