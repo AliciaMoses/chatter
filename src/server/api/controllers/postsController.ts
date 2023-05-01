@@ -182,6 +182,30 @@ delete: async ({ postId, userId }: { postId: string; userId: string }) => {
     where: { id: postId },
   });
 },
+createReply: async ({ userId, content, parentPostId }: { userId: string; content: string; parentPostId: string }) => {
+  const { success } = await ratelimit.limit(userId);
+  if (!success) throw new TRPCError({ code: "TOO_MANY_REQUESTS" });
+
+  const reply = await prisma.posts.create({
+    data: {
+      authorId: userId,
+      content,
+      parentPostId,
+    },
+  });
+  return reply;
+},
+getReplies: async (parentPostId: string) => {
+  const replies = await prisma.posts.findMany({
+    where: {
+      parentPostId: parentPostId,
+    },
+    orderBy: [{ createdAt: "desc" }],
+  });
+
+  return addUserDataToPosts(replies);
+},
+
 
 };
 
