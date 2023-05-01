@@ -71,5 +71,23 @@ export const postsRouter = createTRPCRouter({
   .query(async ({ input }) => {
     return await postsController.getLikedPostsByUserId(input);
   }),
-
+  createReply: privateProcedure
+  .input(
+    z.object({
+      content: z.string().min(1).max(280),
+      parentPostId: z.string(),
+    })
+  )
+  .mutation(async ({ ctx, input }) => {
+    return await postsController.createReply({
+      userId: ctx.userId,
+      content: input.content,
+      parentPostId: input.parentPostId,
+    });
+  }),
+  getReplies: publicProcedure
+  .input(z.object({ parentPostId: z.string() }))
+  .query(async ({ input }) => {
+    return await postsController.getReplies(input.parentPostId);
+  }),
 });
