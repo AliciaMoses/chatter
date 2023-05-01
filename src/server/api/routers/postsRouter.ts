@@ -65,4 +65,11 @@ export const postsRouter = createTRPCRouter({
     .query(async ({ input }) => {
       return await postsController.getUserLike(input.postId, input.userId);
     }),
+
+  getLikedPostsByUserId: publicProcedure
+  .input(z.string())
+  .query(async ({ input }) => {
+    return await postsController.getLikedPostsByUserId(input);
+  }),
+
 });

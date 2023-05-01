@@ -146,6 +146,24 @@ getUserLike: async (postId: string, userId?: string) => {
   });
   return { isLiked: likes.length > 0, count: likes.length };
 },
+
+getLikedPostsByUserId: async (userId: string) => {
+  const likedPosts = await prisma.likes.findMany({
+    where: {
+      authorId: userId,
+    },
+    include: {
+      post: true,
+    },
+  });
+
+  const postsWithUserData = await addUserDataToPosts(
+    likedPosts.map((like) => like.post)
+  );
+
+  return postsWithUserData;
+},
+
 delete: async ({ postId, userId }: { postId: string; userId: string }) => {
  
   const post = await prisma.posts.findUnique({
