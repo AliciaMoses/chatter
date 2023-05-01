@@ -1,5 +1,5 @@
 import { api } from "~/utils/api";
-import { useUser } from "@clerk/nextjs";
+
 import UserPost from "../userPost/UserPost";
 
 type Posts = {
@@ -9,9 +9,8 @@ type Posts = {
   authorId: string;
 };
 
-const LikedPosts: React.FC = () => {
-  const { user } = useUser();
-  const userId = user?.id || "";
+const LikedPosts: React.FC<{ userId: string }> = ({ userId }) => {
+
 
   const { data: likedPosts, isLoading: likedPostsLoading } =
     api.posts.getLikedPostsByUserId.useQuery<
@@ -28,14 +27,20 @@ const LikedPosts: React.FC = () => {
 
   return (
     <>
+       <div className="py-869 flex min-h-screen items-center justify-center px-4 sm:px-6 lg:px-8">
+       <div className="w-full max-w-xl space-y-4">
       {!likedPostsLoading &&
+    
         likedPosts?.map((likedPost) => (
+          
           <UserPost
             key={likedPost.post.id}
             post={likedPost.post}
             author={likedPost.author}
           />
         ))}
+        </div>
+    </div>
     </>
   );
 };

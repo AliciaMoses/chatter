@@ -1,17 +1,22 @@
 import type { NextPage, GetServerSideProps } from "next";
+import React, { useState 
+} from "react";
+
 import { api } from "~/utils/api";
 import UserPost from "~/components/userPost/UserPost";
 import NotFound from "~/components/notFound/NotFound";
 import Navbar from "~/components/navbar/Navbar";
 import LoadingPosts from "~/components/loadingPosts/loadingPosts";
+import LikedPosts from "~/components/likedPosts/LikedPosts";
 
 const ProfileFeed: React.FC<{ userId: string }> = ({ userId }) => {
   const { data, status } = api.posts.getPostsByUserId.useQuery({ userId });
-
+  
   if (status === "loading") return <LoadingPosts />;
   if (!data || data.length === 0) return <div>User has not posted</div>;
 
   return (
+    <>
     <div className="py-869 flex min-h-screen items-center justify-center px-4 sm:px-6 lg:px-8">
       <div className="w-full max-w-xl space-y-4">
         {data.map((post) => (
@@ -19,11 +24,14 @@ const ProfileFeed: React.FC<{ userId: string }> = ({ userId }) => {
         ))}
       </div>
     </div>
+    </>
   );
 };
 
 const Profile: NextPage<{ username: string }> = ({ username }) => {
   const { data, status } = api.profiles.getUserByUsername.useQuery({ username });
+
+  const [showLikedPosts, setShowLikedPosts] = useState(false);
 
   if (status === "loading") return <LoadingPosts />;
 
@@ -43,7 +51,17 @@ const Profile: NextPage<{ username: string }> = ({ username }) => {
         </span>
       </h1>
       <br></br>
-      <ProfileFeed userId={data.id} />
+      <button
+    className="text-center mx-auto block mb-4"
+    onClick={() => setShowLikedPosts(!showLikedPosts)}
+  >
+    {showLikedPosts ? "Show Posts" : "Show Liked Posts"}
+  </button>
+  {showLikedPosts ? (
+    <LikedPosts userId={data.id} />
+  ) : (
+    <ProfileFeed userId={data.id} />
+  )}
     </>
   );
 };
