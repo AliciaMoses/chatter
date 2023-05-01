@@ -12,13 +12,17 @@ generator client {
 }
 
 model Posts {
-  id        String   @id @default(cuid())
-  createdAt DateTime @default(now())
-  content   String   @db.VarChar(255)
-  authorId  String
-  likes     Likes[]
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
+  content      String   @db.VarChar(255)
+  authorId     String
+  likes        Likes[]
+  parentPost   Posts?   @relation("PostReplies", fields: [parentPostId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  parentPostId String?
+  replies      Posts[]  @relation("PostReplies")
 
   @@index([authorId])
+  @@index([parentPostId])
 }
 
 model Likes {
@@ -27,7 +31,7 @@ model Likes {
   post       Posts   @relation(fields: [postId], references: [id], onDelete: Cascade)
   postId     String
 
-  @@unique([authorId, postId]) // Ensures a user can like a post only once
+  @@unique([authorId, postId])
   @@index([authorId])
   @@index([postId])
 }
