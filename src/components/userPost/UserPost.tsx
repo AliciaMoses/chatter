@@ -125,15 +125,20 @@ const UserPost = (props: UserPostProps) => {
                   />
                 </Link>
               ) : (
-                <div className="flex-grow" />
+                <div className="" />
               )}
-
+             
               <button
                 onClick={() => setIsPostReplyActive((prevState) => !prevState)}
               >
                 {isPostReplyActive ? "Cancel" : <ReplyButton />}
               </button>
-              {isPostReplyActive && (
+         
+             
+            </Link>
+          </div>
+          <div>
+          {isPostReplyActive && (
                 <CreateReply
                   onNewPostCreated={function () {
                     throw new Error("Function not implemented.");
@@ -141,11 +146,6 @@ const UserPost = (props: UserPostProps) => {
                   parentPostId={post.id}
                 />
               )}
-            </Link>
-          </div>
-        </div>
-        <br />
-        <div>
           {replies &&
             replies.map((reply) => (
               <UserReply
@@ -156,6 +156,10 @@ const UserPost = (props: UserPostProps) => {
               />
             ))}
         </div>
+        </div>
+
+        <br />
+       
       </Link>
       <br />
       <DeletePostModal

@@ -9,8 +9,7 @@ import { useState, useEffect } from "react";
 
 const FeedPage: NextPage = () => {
   const user = useUser();
-  const { data, refetch } = api.posts.getAllWithReplies.useQuery();
-  // In your page component file
+  const { data, refetch } = api.posts.getAll.useQuery();
 
   const [feedUpdated, setFeedUpdated] = useState(false);
 
@@ -36,11 +35,21 @@ const FeedPage: NextPage = () => {
       <Navbar />
       <div className="py-869 flex min-h-full items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="w-full max-w-lg space-y-4">
-          <div>{user.isSignedIn && <CreatePost onNewPostCreated={handleFeedUpdate} />}</div>
+          <div>
+            {user.isSignedIn && (
+              <CreatePost onNewPostCreated={handleFeedUpdate} />
+            )}
+          </div>
           <br />
-          {data?.map((individualPost) => (
-            <UserPost {...individualPost} key={individualPost.post.id} onPostDeleted={handleFeedUpdate} />
-          ))}
+          {data
+            ?.filter((individualPost) => !individualPost.post.parentPostId)
+            .map((individualPost) => (
+              <UserPost
+                {...individualPost}
+                key={individualPost.post.id}
+                onPostDeleted={handleFeedUpdate}
+              />
+            ))}
         </div>
       </div>
     </>
