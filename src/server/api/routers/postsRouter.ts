@@ -90,4 +90,9 @@ export const postsRouter = createTRPCRouter({
   .query(async ({ input }) => {
     return await postsController.getReplies(input.parentPostId);
   }),
+  getAllWithReplies: publicProcedure
+  .query(async () => {
+    return await postsController.getAllWithReplies();
+  }),
+  
 });
