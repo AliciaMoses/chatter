@@ -1,4 +1,7 @@
 
+.replyContainer {
+    @apply max-w-3xl mx-auto;
+  }
 
 .post {
     @apply rounded-lg  bg-violet-100/[.20] border-2  border-solid border-violet-800  p-4 shadow-lg shadow-violet-300;

@@ -80,6 +80,7 @@ const UserReply = (props: UserReplyProps) => {
 
   return (
     <>
+     <div className={styles.replyContainer}>
       <Link href={`/post/${post.id}`}>
         <div className={styles.post} key={post.id}>
           <div className={styles.postHeader}>
@@ -138,6 +139,7 @@ const UserReply = (props: UserReplyProps) => {
           </div>
         </div>
       </Link>
+      </div>
       <br />
       <DeletePostModal
         isOpen={modalOpen}
