@@ -9,7 +9,9 @@ import { useState, useEffect } from "react";
 
 const FeedPage: NextPage = () => {
   const user = useUser();
-  const { data, refetch } = api.posts.getAll.useQuery();
+  const { data, refetch } = api.posts.getAllWithReplies.useQuery();
+  // In your page component file
+
   const [feedUpdated, setFeedUpdated] = useState(false);
 
   useEffect(() => {
