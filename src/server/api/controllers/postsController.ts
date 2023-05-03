@@ -169,7 +169,7 @@ delete: async ({ postId, userId }: { postId: string; userId: string }) => {
   const post = await prisma.posts.findUnique({
     where: { id: postId },
   });
-
+  
   if (!post) {
     throw new TRPCError({ code: "NOT_FOUND" });
   }
@@ -205,6 +205,25 @@ getReplies: async (parentPostId: string) => {
 
   return addUserDataToPosts(replies);
 },
+
+getAllWithReplies: async () => {
+  const posts = await prisma.posts.findMany({
+    where: {
+      parentPostId: null,
+    },
+    orderBy: [{ createdAt: "desc" }],
+  });
+
+  const postsWithReplies = await Promise.all(
+    posts.map(async (post) => {
+      const replies = await postsController.getReplies(post.id);
+      return { ...post, replies };
+    })
+  );
+
+  return addUserDataToPosts(postsWithReplies);
+},
+
 
 
 };
