@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import { useRouter } from "next/router";
@@ -8,13 +7,14 @@ import Image from "next/image";
 import { api } from "~/utils/api";
 import { useDeletePost } from "../deletePostModal/useDeletePost";
 import { type UserReplyProps } from "./UserReply.types";
-import { calculateRelativeTime } from "../userPost/UserPost.helpers"
+import { calculateRelativeTime } from "../userPost/UserPost.helpers";
 import DeletePostModal from "../deletePostModal/deletePostModal";
 import LikeButton from "../likeButton/LikeButton";
 import DeleteButton from "../deleteButton/DeleteButton";
 
-import styles from "./UserReply.module.css"
+import styles from "./UserReply.module.css";
 import CreateReply from "../createReply/CreateReply";
+import ReplyButton from "../replyButton/ReplyButton";
 
 const UserReply = (props: UserReplyProps) => {
   const { user } = useUser();
@@ -121,13 +121,22 @@ const UserReply = (props: UserReplyProps) => {
               ) : (
                 <div className="flex-grow" />
               )}
+              <button
+                onClick={() => setIsPostReplyActive((prevState) => !prevState)}
+              >
+                {isPostReplyActive ? "Cancel" : <ReplyButton />}
+              </button>
+              {isPostReplyActive && (
+                <CreateReply
+                  onNewPostCreated={function () {
+                    throw new Error("Function not implemented.");
+                  }}
+                  parentPostId={post.id}
+                />
+              )}
             </Link>
           </div>
         </div>
-        <button onClick={() => setIsPostReplyActive(prevState => !prevState)}>{isPostReplyActive ? "Cancel" : "Create reply"}</button>
-        {isPostReplyActive && <CreateReply onNewPostCreated={function () {
-          throw new Error("Function not implemented.");
-        } } parentPostId={post.id} />}
       </Link>
       <br />
       <DeletePostModal
