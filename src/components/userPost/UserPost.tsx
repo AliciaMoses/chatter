@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import { useRouter } from "next/router";
@@ -12,8 +11,11 @@ import { calculateRelativeTime } from "./UserPost.helpers";
 import DeletePostModal from "../deletePostModal/deletePostModal";
 import LikeButton from "../likeButton/LikeButton";
 import DeleteButton from "../deleteButton/DeleteButton";
+import UserReply from "../userReply/UserReply";
 
 import styles from "./UserPost.module.css";
+import CreateReply from "../createReply/CreateReply";
+import ReplyButton from "../replyButton/ReplyButton";
 
 const UserPost = (props: UserPostProps) => {
   const { user } = useUser();
@@ -28,6 +30,10 @@ const UserPost = (props: UserPostProps) => {
       postId: post.id,
       userId: user?.id,
     });
+
+  const { data: replies } = api.posts.getReplies.useQuery({
+    parentPostId: post.id,
+  });
 
   const postDate = new Date(post.createdAt);
   const relativeTime = calculateRelativeTime(postDate);
@@ -75,6 +81,8 @@ const UserPost = (props: UserPostProps) => {
     });
   };
 
+  const [isPostReplyActive, setIsPostReplyActive] = useState(false);
+
   return (
     <>
       <Link href={`/post/${post.id}`}>
@@ -107,6 +115,7 @@ const UserPost = (props: UserPostProps) => {
                 onClick={(event) => handleLikeClick(event)}
               />
             </Link>
+
             <Link href="">
               {user && user.id === author.id ? (
                 <Link href={deleteButtonHref}>
@@ -118,8 +127,34 @@ const UserPost = (props: UserPostProps) => {
               ) : (
                 <div className="flex-grow" />
               )}
+
+              <button
+                onClick={() => setIsPostReplyActive((prevState) => !prevState)}
+              >
+                {isPostReplyActive ? "Cancel" : <ReplyButton />}
+              </button>
+              {isPostReplyActive && (
+                <CreateReply
+                  onNewPostCreated={function () {
+                    throw new Error("Function not implemented.");
+                  }}
+                  parentPostId={post.id}
+                />
+              )}
             </Link>
           </div>
+        </div>
+        <br />
+        <div>
+          {replies &&
+            replies.map((reply) => (
+              <UserReply
+                key={reply.post.id}
+                post={reply.post}
+                author={reply.author}
+                parentPostId={""}
+              />
+            ))}
         </div>
       </Link>
       <br />
