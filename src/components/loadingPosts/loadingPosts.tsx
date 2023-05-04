@@ -1,6 +1,7 @@
+import React from 'react';
 import Image from "next/image";
 
-const LoadingPosts = () => {
+const LoadingPosts: React.FC = () => {
   return (
     <>
       <div
