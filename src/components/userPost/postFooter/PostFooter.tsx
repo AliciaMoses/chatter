@@ -5,19 +5,17 @@ import { useUser } from "@clerk/clerk-react";
 import LikeButton from "../../likeButton/LikeButton";
 import DeleteButton from "../../deleteButton/DeleteButton";
 
-
 import { type UserPostProps } from "../UserPost.types";
 
 interface PostFooterProps {
   author: UserPostProps["author"];
-  userLiked: boolean;
-  likes: number;
+  userLiked?: boolean;
+  likes?: number;
   handleLikeClick: (event: React.MouseEvent) => void;
   handleModalToggle: () => void;
   deleteButtonHref: string;
-  setIsPostReplyActive: (active: boolean) => void;
-  isPostReplyActive: boolean;
 }
+
 const PostFooter: React.FC<PostFooterProps> = ({
   author,
   userLiked,
@@ -25,7 +23,6 @@ const PostFooter: React.FC<PostFooterProps> = ({
   handleLikeClick,
   handleModalToggle,
   deleteButtonHref,
-
 }) => {
   const { user } = useUser();
   return (
@@ -38,18 +35,16 @@ const PostFooter: React.FC<PostFooterProps> = ({
         />
       </Link>
 
-      <Link href="">
-        {user && user.id === author.id ? (
-          <Link href={deleteButtonHref}>
-            <DeleteButton
-              onDeleteClick={handleModalToggle}
-              deleteButtonHref={deleteButtonHref}
-            />
-          </Link>
-        ) : (
-          <div className="" />
-        )}
-      </Link>
+      {user && user.id === author.id ? (
+        <Link href={deleteButtonHref}>
+          <DeleteButton
+            onDeleteClick={handleModalToggle}
+            deleteButtonHref={deleteButtonHref}
+          />
+        </Link>
+      ) : (
+        <div className="" />
+      )}
     </div>
   );
 };
