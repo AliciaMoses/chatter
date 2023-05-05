@@ -1,15 +1,15 @@
 import { useUser } from "@clerk/nextjs";
 import type { NextPage } from "next";
 import Head from "next/head";
-import UserPost from "~/components/userPost/UserPost";
 import { api } from "../utils/api";
 import Navbar from "~/components/navbar/Navbar";
 import CreatePost from "~/components/createPost/CreatePost";
 import { useState, useEffect } from "react";
+import PostContainer from "~/components/postContainer/PostContainer";
 
 const FeedPage: NextPage = () => {
   const user = useUser();
-  const { data, refetch } = api.posts.getAll.useQuery();
+  const { data, refetch } = api.posts.getAllWithReplies.useQuery();
 
   const [feedUpdated, setFeedUpdated] = useState(false);
 
@@ -43,13 +43,16 @@ const FeedPage: NextPage = () => {
           <br />
           {data
             ?.filter((individualPost) => !individualPost.post.parentPostId)
-            .map((individualPost) => (
-              <UserPost
-                {...individualPost}
-                key={individualPost.post.id}
-                onPostDeleted={handleFeedUpdate}
-              />
-            ))}
+            .map((individualPost) => {
+              console.log("Rendering PostContainer:", individualPost.post.id);
+              return (
+                <PostContainer
+                  {...individualPost}
+                  key={individualPost.post.id}
+                  onPostDeleted={handleFeedUpdate}
+                />
+              );
+            })}
         </div>
       </div>
     </>
