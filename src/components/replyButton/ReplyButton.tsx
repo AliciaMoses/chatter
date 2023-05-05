@@ -1,12 +1,13 @@
-import React from 'react';
-import ReplyIcon from './ReplyIcon';
+import React from "react";
+import ReplyIcon from "./ReplyIcon";
 
+type ReplyButtonProps = {
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+};
 
-const ReplyButton: React.FC = () => {
+const ReplyButton: React.FC<ReplyButtonProps> = ({ onClick }) => {
   return (
-    <button
-    
-    >
+    <button onClick={onClick}>
       <ReplyIcon />
     </button>
   );
