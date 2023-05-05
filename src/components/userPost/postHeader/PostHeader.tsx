@@ -3,11 +3,11 @@ import Link from "next/link";
 import Image from "next/image";
 
 import { type UserPostProps } from "../UserPost.types";
-
+import styles from "../../userPost/UserPost.module.css"
 const PostHeader: React.FC<UserPostProps> = ({ author }) => {
   return (
     <>
-      <div className="postHeader">
+      <div className={styles.postHeader}>
         <div className="postAvatar">
           <Link href={`/profile/@${author.username}`}>
             <Image
@@ -20,7 +20,7 @@ const PostHeader: React.FC<UserPostProps> = ({ author }) => {
           </Link>
         </div>
         <Link href={`/profile/@${author.username}`}>
-          <div className="postUsername">@{author.username}</div>
+          <div className={styles.postUsername}>@{author.username}</div>
         </Link>
       </div>
     </>
