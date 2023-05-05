@@ -1,33 +1,37 @@
 
 .replyContainer {
-    @apply max-w-3xl mx-auto;
+    @apply max-w-3xl mx-auto pt-4;
   }
 
-.post {
-    @apply rounded-lg  bg-violet-100/[.20] border-2  border-solid border-violet-800  p-4 shadow-lg shadow-violet-300;
+  .replySpacing {
+    @apply pb-4; 
+  }
+
+.reply {
+    @apply rounded-lg  bg-violet-100/[.70] border-2  border-solid border-violet-800  p-4 shadow-lg shadow-violet-300;
 }
 
-.postHeader{
-    @apply flex items-center space-x-4
+.replyHeader{
+    @apply flex items-center space-x-4 
 }
 
 
-.postBody{
+.replyBody{
     @apply p-6
 }
 
-.postContent{
+.replyContent{
     @apply pb-3 text-2xl font-semibold text-slate-800
 }
 
-.postDate{
+.replyDate{
     @apply text-sm font-extralight text-gray-400
 }
 
-.postFooter{
+.replyFooter{
   @apply flex justify-between items-center
 }
 
-.postUsername{
+.replyUsername{
     @apply text-sm text-violet-500
 }
