@@ -10,7 +10,7 @@ import { calculateRelativeTime } from "./UserPost.helpers";
 import DeletePostModal from "../deletePostModal/deletePostModal";
 import PostFooter from "./postFooter/PostFooter";
 import PostHeader from "./postHeader/PostHeader";
-
+import CreateReplyContainer from "../createReplyContainer/CreateReplyContainer";
 import styles from "./UserPost.module.css";
 
 const UserPost = (props: UserPostProps) => {
@@ -72,6 +72,16 @@ const UserPost = (props: UserPostProps) => {
       console.error("Error occurred while deleting the post: ", error);
     });
   };
+  const [isExpanded, setIsExpanded] = useState(false);
+  const handleExpand = (event: React.MouseEvent): void => {
+    event.preventDefault();
+    setIsExpanded(!isExpanded);
+  };
+
+  const handleNewPostCreated = () => {
+    setIsExpanded(false);
+  };
+
 
   return (
     <>
@@ -89,11 +99,15 @@ const UserPost = (props: UserPostProps) => {
             likes={likes}
             handleLikeClick={handleLikeClick}
             handleModalToggle={handleModalToggle}
-            deleteButtonHref={deleteButtonHref}
-          />
+            deleteButtonHref={deleteButtonHref} 
+            handleExpand={handleExpand}         />
         </div>
       </Link>
-
+      <CreateReplyContainer
+        isExpanded={isExpanded}
+        parentPostId={post.id}
+        onNewPostCreated={handleNewPostCreated} 
+      />
       <DeletePostModal
         isOpen={modalOpen}
         onClose={handleModalToggle}
