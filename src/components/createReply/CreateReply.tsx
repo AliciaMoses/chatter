@@ -4,16 +4,19 @@ import { useState, useRef, useEffect } from "react";
 import type { FC } from "react";
 import Picker from "emoji-picker-react";
 
-export type CreateReplyProps = {
-    onNewPostCreated: (isCreated: boolean) => void;
-    parentPostId: string;
-  };
+interface CreateReplyProps {
+  parentPostId: string;
+  onNewPostCreated: (isCreated: boolean) => void;
+}
+
   
 interface EmojiData {
   emoji: string;
 }
 
-const CreateReply: FC<CreateReplyProps> = ({ onNewPostCreated, parentPostId }) => {
+const CreateReply: FC<CreateReplyProps> = ({ onNewPostCreated,
+  parentPostId,
+ }) => {
   const { user } = useUser();
   const [input, setInput] = useState("");
   const [emojiPickerVisible, setEmojiPickerVisible] = useState(false);
@@ -52,15 +55,17 @@ const CreateReply: FC<CreateReplyProps> = ({ onNewPostCreated, parentPostId }) =
   const isInputValid =
     input.length > 0 && input.length <= charLimit && !/^\s*$/.test(input);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    if (isInputValid) {
-      mutate({
+    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      const isCreated = isInputValid;
+      if (isInputValid) {
+        mutate({
           content: input,
-          parentPostId
-      });
-    }
-  };
+          parentPostId,
+        });
+      }
+      onNewPostCreated(isCreated);
+    };
 
   const onKeyPress = (event: React.KeyboardEvent<HTMLTextAreaElement>) => {
     console.log(isInputValid);
@@ -88,6 +93,7 @@ const CreateReply: FC<CreateReplyProps> = ({ onNewPostCreated, parentPostId }) =
       textareaRef.current.focus();
     }
   };
+  
 
   return (
     <>
