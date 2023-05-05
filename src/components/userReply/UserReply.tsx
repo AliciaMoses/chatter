@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import { useUser } from "@clerk/clerk-react";
 import { useRouter } from "next/router";
 import Link from "next/link";
-import Image from "next/image";
+
 
 import { api } from "~/utils/api";
 import { useDeletePost } from "../deletePostModal/useDeletePost";
 import { type UserReplyProps } from "./UserReply.types";
 import { calculateRelativeTime } from "../userPost/UserPost.helpers";
 import DeletePostModal from "../deletePostModal/deletePostModal";
-import LikeButton from "../likeButton/LikeButton";
-import DeleteButton from "../deleteButton/DeleteButton";
+
 
 import styles from "./UserReply.module.css";
-import CreateReply from "../createReply/CreateReply";
-import ReplyButton from "../replyButton/ReplyButton";
+
+import ReplyHeader from "./replyHeader/ReplyHeader";
+import ReplyFooter from "./replyFooter/ReplyFooter";
 
 const UserReply = (props: UserReplyProps) => {
   const { user } = useUser();
@@ -76,71 +76,28 @@ const UserReply = (props: UserReplyProps) => {
     });
   };
 
-  const [isPostReplyActive, setIsPostReplyActive] = useState(false);
-
   return (
     <>
-     <div className={styles.replyContainer}>
+     <div className={`${styles.replyContainer ?? ""} ${styles.replySpacing ?? ""}`}>
       <Link href={`/post/${post.id}`}>
-        <div className={styles.post} key={post.id}>
-          <div className={styles.postHeader}>
-            <div className="postAvatar">
-              <Link href={`/profile/@${author.username}`}>
-                <Image
-                  src={author.profileImageUrl}
-                  alt="Author profile image"
-                  width={64}
-                  height={64}
-                  className="rounded-full object-cover shadow-md shadow-violet-700 ring-2 ring-violet-800 ring-offset-2"
-                />
-              </Link>
-            </div>
-            <Link href={`/profile/@${author.username}`}>
-              <div className={styles.postUsername}>@{author.username}</div>
-            </Link>
+        <div className={styles.reply} key={post.id}>
+          <ReplyHeader author={author} post={post} parentPostId={""}/>
+          <div className={styles.replyBody}>
+            <div className={styles.replyContent}>{post.content}</div>
+            <div className={styles.replyDate}>{relativeTime}</div>
           </div>
-          <div className={styles.postBody}>
-            <div className={styles.postContent}>{post.content}</div>
-            <div className={styles.postDate}>{relativeTime}</div>
-          </div>
-          <div className={styles.postFooter}>
-            <Link href="">
-              <LikeButton
-                userLiked={userLiked}
-                likes={likes}
-                onClick={(event) => handleLikeClick(event)}
-              />
-            </Link>
-            <Link href="">
-              {user && user.id === author.id ? (
-                <Link href={deleteButtonHref}>
-                  <DeleteButton
-                    onDeleteClick={handleModalToggle}
-                    deleteButtonHref={deleteButtonHref}
-                  />
-                </Link>
-              ) : (
-                <div className="flex-grow" />
-              )}
-              <button
-                onClick={() => setIsPostReplyActive((prevState) => !prevState)}
-              >
-                {isPostReplyActive ? "Cancel" : <ReplyButton />}
-              </button>
-              {isPostReplyActive && (
-                <CreateReply
-                  onNewPostCreated={function () {
-                    throw new Error("Function not implemented.");
-                  }}
-                  parentPostId={post.id}
-                />
-              )}
-            </Link>
-          </div>
+          <ReplyFooter
+            author={author}
+            userLiked={userLiked}
+            likes={likes}
+            handleLikeClick={handleLikeClick}
+            handleModalToggle={handleModalToggle}
+            deleteButtonHref={deleteButtonHref}
+          />
         </div>
       </Link>
       </div>
-      <br />
+      
       <DeletePostModal
         isOpen={modalOpen}
         onClose={handleModalToggle}
