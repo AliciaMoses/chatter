@@ -31,7 +31,9 @@ const PostView: NextPage<PostViewProps> = ({ id }) => {
       <div className="flex justify-center">
         <div className="w-full max-w-4xl">
           <UserPost {...data} />
-          <RepliesContainer parentPostId={data.post.id} />
+          <RepliesContainer parentPostId={data.post.id} onRepliesUpdated={function (): void {
+            throw new Error("Function not implemented.");
+          } } />
         </div>
       </div>
     </>
