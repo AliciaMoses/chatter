@@ -97,8 +97,8 @@ const CreateReply: FC<CreateReplyProps> = ({ onNewPostCreated,
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
-        <label className="sr-only">Your message</label>
+      <form onSubmit={handleSubmit} className="pt-3">
+        <label className="sr-only">Your reply</label>
         <div className="flex items-center rounded-lg  border-2 border-solid border-violet-800 p-4 px-3 py-2 pb-8 pt-8 shadow-lg shadow-violet-100">
           <button
             ref={emojiButtonRef}
@@ -139,7 +139,7 @@ const CreateReply: FC<CreateReplyProps> = ({ onNewPostCreated,
             className={`mx-4 block w-full rounded-lg border-2 bg-violet-100 p-2.5  font-mono text-sm text-gray-900 shadow-inner shadow-violet-400 focus:border-${
               input.length > charLimit ? "red-500" : "slate-300"
             } focus:ring-${input.length > charLimit ? "red-500" : "slate-300"}`}
-            placeholder="Share your thoughts..."
+            placeholder="Enter your reply here..."
             value={input}
             onChange={(event) => setInput(event.target.value)}
             onKeyPress={onKeyPress}
@@ -162,7 +162,7 @@ const CreateReply: FC<CreateReplyProps> = ({ onNewPostCreated,
             >
               <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
             </svg>
-            <span className="sr-only">Send message</span>
+            <span className="sr-only">Send reply</span>
           </button>
         </div>
         {input.length > charLimit && (
