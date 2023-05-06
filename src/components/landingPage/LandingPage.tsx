@@ -3,6 +3,7 @@ import { SignUpButton } from "@clerk/nextjs";
 import { useUser } from "@clerk/nextjs";
 import Link from "next/link";
 import UserPost from "~/components/userPost/UserPost";
+import RocketIcon from "./RocketIcon";
 
 const LandingPage = () => {
   const { data } = api.posts.getAll.useQuery();
@@ -27,8 +28,8 @@ const LandingPage = () => {
               <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none"></dl>
               {user.isSignedIn ? (
                 <Link href="/feed">
-                  <button className="rounded border-2 border-violet-300 px-4 py-2 font-mono text-violet-600 shadow-md hover:bg-gray-200">
-                    Enter the Chattersphere...
+                  <button className="flex flex-items-center mr-2 shadow-md shadow-violet-300 hover:bg-violet-200 text-violet-950 font-bold py-2 px-4 border-b-4 hover:border-violet-800 rounded focus:outline-none border-2 border-violet-800 focus:ring-4 focus:ring-violet-300 dark:bg-violet-100 dark:hover:bg-violet-200 dark:focus:ring-violet-800">
+                    Enter the Chattersphere...<RocketIcon />
                   </button>
                 </Link>
               ) : (
