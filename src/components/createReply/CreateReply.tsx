@@ -99,7 +99,7 @@ const CreateReply: FC<CreateReplyProps> = ({ onNewPostCreated,
     <>
       <form onSubmit={handleSubmit} className="pt-3">
         <label className="sr-only">Your reply</label>
-        <div className="flex items-center rounded-lg  border-2 border-solid border-violet-800 p-4 px-3 py-2 pb-8 pt-8 shadow-lg shadow-violet-100">
+        <div className="flex items-center rounded-lg bg-violet-100 border-2 border-solid border-violet-800 p-4 px-3 py-2 pb-8 pt-8 shadow-lg shadow-violet-100">
           <button
             ref={emojiButtonRef}
             type="button"
@@ -136,7 +136,7 @@ const CreateReply: FC<CreateReplyProps> = ({ onNewPostCreated,
           </div>
           <textarea
             ref={textareaRef}
-            className={`mx-4 block w-full rounded-lg border-2 bg-violet-100 p-2.5  font-mono text-sm text-gray-900 shadow-inner shadow-violet-400 focus:border-${
+            className={`mx-4 block w-full rounded-lg border-2 bg-violet-200 p-2.5  font-mono text-sm text-gray-900 shadow-inner shadow-violet-400 focus:border-${
               input.length > charLimit ? "red-500" : "slate-300"
             } focus:ring-${input.length > charLimit ? "red-500" : "slate-300"}`}
             placeholder="Enter your reply here..."
@@ -148,8 +148,8 @@ const CreateReply: FC<CreateReplyProps> = ({ onNewPostCreated,
             type="submit"
             className={`inline-flex cursor-pointer justify-center rounded-full p-2 ${
               isInputValid
-                ? "text-slate-400 hover:text-slate-600"
-                : "cursor-not-allowed text-slate-200"
+                ? "text-violet-400 hover:text-violet-900"
+                : "cursor-not-allowed text-slate-400"
             }`}
             disabled={!isInputValid}
           >
