@@ -6,10 +6,13 @@ import Link from "next/link";
 
 type RepliesContainerProps = {
   parentPostId: string;
+  onRepliesUpdated: () => void;
 };
+
 
 const RepliesContainer: React.FC<RepliesContainerProps> = ({
   parentPostId,
+  onRepliesUpdated,
 }) => {
   const { data: replies } = api.posts.getReplies.useQuery(
     {
@@ -34,18 +37,19 @@ const RepliesContainer: React.FC<RepliesContainerProps> = ({
   return (
     <>
     <div className="repliesContainer flex-grow">
-      {replies &&
-        replies.slice(0, maxRepliesToShow).map((reply) => {
-          console.log("Rendering UserReply:", reply.post.id);
-          return (
-            <UserReply
-              key={reply.post.id}
-              post={reply.post}
-              author={reply.author}
-              parentPostId={parentPostId}
-            />
-          );
-        })}
+        {replies &&
+          replies.slice(0, maxRepliesToShow).map((reply) => {
+            console.log("Rendering UserReply:", reply.post.id);
+            return (
+              <UserReply
+                key={reply.post.id}
+                post={reply.post}
+                author={reply.author}
+                parentPostId={parentPostId}
+                onRepliesUpdated={onRepliesUpdated}
+              />
+            );
+          })}
       {router.pathname === "/feed" &&
         replies &&
         replies.length > maxRepliesToShow && (

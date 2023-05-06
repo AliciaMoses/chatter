@@ -81,7 +81,9 @@ const UserReply = (props: UserReplyProps) => {
      <div className={`${styles.replyContainer ?? ""} ${styles.replySpacing ?? ""}`}>
       <Link href={`/post/${post.id}`}>
         <div className={styles.reply} key={post.id}>
-          <ReplyHeader author={author} post={post} parentPostId={""}/>
+          <ReplyHeader author={author} post={post} parentPostId={""} onRepliesUpdated={function (): void {
+              throw new Error("Function not implemented.");
+            } }/>
           <div className={styles.replyBody}>
             <div className={styles.replyContent}>{post.content}</div>
             <div className={styles.replyDate}>{relativeTime}</div>

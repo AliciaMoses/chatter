@@ -46,10 +46,11 @@ const FeedPage: NextPage = () => {
               console.log("Rendering PostContainer:", individualPost.post.id);
               return (
                 <PostContainer
-                  {...individualPost}
-                  key={individualPost.post.id}
-                  onPostDeleted={handleFeedUpdate}
-                />
+                onFeedUpdate={function (): void {
+                  throw new Error("Function not implemented.");
+                } } {...individualPost}
+                key={individualPost.post.id}
+                onPostDeleted={handleFeedUpdate}                />
               );
             })}
         </div>
