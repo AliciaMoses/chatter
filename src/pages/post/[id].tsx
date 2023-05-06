@@ -5,6 +5,7 @@ import UserPost from "~/components/userPost/UserPost";
 import NotFound from "~/components/notFound/NotFound";
 import Navbar from "~/components/navbar/Navbar";
 import LoadingPosts from "~/components/loadingPosts/loadingPosts";
+import RepliesContainer from "~/components/repliesContainer/RepliesContainer";
 
 type PostViewProps = {
   id: string;
@@ -26,10 +27,11 @@ const PostView: NextPage<PostViewProps> = ({ id }) => {
         <title>{`${data.post.content} - @${data.author.username}`}</title>
       </Head>
       <Navbar />
-      <br></br>
+
       <div className="flex justify-center">
         <div className="w-full max-w-4xl">
           <UserPost {...data} />
+          <RepliesContainer parentPostId={data.post.id} />
         </div>
       </div>
     </>
