@@ -10,6 +10,7 @@ import { type Router, useRouter } from 'next/router';
 import Link from "next/link";
 import ProfileIcon from "./ProfileIcon";
 import HomeIcon from "./HomeIcon";
+import FeedIcon from "./FeedIcon";
 
 type UserObjectType = {
   isLoaded: boolean;
@@ -61,9 +62,10 @@ const Navbar: React.FC = () => {
               <Link href="/feed">
                 <button
                   type="button"
-                  className="rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                  className="flex flex-items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                 >
-                  Feed
+                  <FeedIcon />
+                   <span className="ml-2">Feed</span>
                 </button>
               </Link>
             )}
