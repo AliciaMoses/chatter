@@ -1,9 +1,9 @@
 
 import type { NextPage } from "next";
 import Head from "next/head";
+import LandingPage from "~/components/landingPage/LandingPage";
 import Navbar from "~/components/navbar/Navbar";
 
-import LandingPage from "~/components/landingPage/LandingPage";
 
 const Home: NextPage = () => {
 

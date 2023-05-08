@@ -28,14 +28,16 @@ const LandingPage = () => {
               <dl className="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none"></dl>
               {user.isSignedIn ? (
                 <Link href="/feed">
-                  <button className="flex flex-items-center mr-2 shadow-md shadow-violet-300 hover:bg-violet-200 text-violet-950 font-bold py-2 px-4 border-b-4 hover:border-violet-800 rounded focus:outline-none border-2 border-violet-800 focus:ring-4 focus:ring-violet-300 dark:bg-violet-100 dark:hover:bg-violet-200 dark:focus:ring-violet-800">
-                    Enter the Chattersphere...<RocketIcon />
+                  <button className="flex-items-center mr-2 flex rounded border-2 border-b-4 border-violet-800 px-4 py-2 font-bold text-violet-950 shadow-md shadow-violet-300 hover:border-violet-800 hover:bg-violet-200 focus:outline-none focus:ring-4 focus:ring-violet-300 dark:bg-violet-100 dark:hover:bg-violet-200 dark:focus:ring-violet-800">
+                    Enter the Chattersphere...
+                    <RocketIcon />
                   </button>
                 </Link>
               ) : (
                 <SignUpButton mode="modal" afterSignInUrl="/feed">
-                  <button className="rounded border-2 border-violet-700 px-4 py-2 font-mono text-slate-600 shadow-md shadow-violet-300 hover:bg-gray-200">
-                    {`Join Us via GitHub ->`}
+                  <button className="flex-items-center mr-2 flex rounded border-2 border-b-4 border-violet-800 px-4 py-2 font-bold text-violet-950 shadow-md shadow-violet-300 hover:border-violet-800 hover:bg-violet-200 focus:outline-none focus:ring-4 focus:ring-violet-300 dark:bg-violet-100 dark:hover:bg-violet-200 dark:focus:ring-violet-800">
+                    <span className="mr-2">Join Us via GitHub</span>
+                    <RocketIcon />
                   </button>
                 </SignUpButton>
               )}
