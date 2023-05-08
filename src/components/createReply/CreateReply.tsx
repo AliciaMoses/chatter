@@ -104,7 +104,7 @@ const CreateReply: FC<CreateReplyProps> = ({ onNewPostCreated,
             ref={emojiButtonRef}
             type="button"
             onClick={() => setEmojiPickerVisible(!emojiPickerVisible)}
-            className="hover:bg-gray-1000 cursor-pointer rounded-lg p-2 text-violet-400 hover:text-violet-900"
+            className="hover:bg-slate-1000 cursor-pointer rounded-lg p-2 text-violet-400 hover:text-violet-900"
           >
             <svg
               aria-hidden="true"
@@ -136,7 +136,7 @@ const CreateReply: FC<CreateReplyProps> = ({ onNewPostCreated,
           </div>
           <textarea
             ref={textareaRef}
-            className={`mx-4 block w-full rounded-lg border-2 bg-violet-200 p-2.5  font-mono text-sm text-gray-900 shadow-inner shadow-violet-400 focus:border-${
+            className={`mx-4 block w-full rounded-lg border-2 bg-violet-200 p-2.5  font-mono text-sm text-slate-900 shadow-inner shadow-violet-400 focus:border-${
               input.length > charLimit ? "red-500" : "slate-300"
             } focus:ring-${input.length > charLimit ? "red-500" : "slate-300"}`}
             placeholder="Enter your reply here..."

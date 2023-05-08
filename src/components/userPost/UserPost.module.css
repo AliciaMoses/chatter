@@ -19,7 +19,7 @@
 }
 
 .postDate{
-    @apply text-sm font-extralight text-gray-400
+    @apply text-sm font-extralight text-slate-400
 }
 
 .postFooter{

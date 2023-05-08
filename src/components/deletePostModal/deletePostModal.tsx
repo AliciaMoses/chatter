@@ -46,7 +46,7 @@ const DeletePostModal = ({
               </svg>
             </button>
           </div>
-          <div className="flex items-center justify-end rounded-b border-t border-solid border-gray-300 p-6">
+          <div className="flex items-center justify-end rounded-b border-t border-solid border-slate-300 p-6">
             <button
               className="mr-2 rounded border-0 bg-rose-400 px-4 py-2 text-slate-800 hover:bg-red-600 focus:outline-none"
               onClick={handleDelete}
@@ -54,7 +54,7 @@ const DeletePostModal = ({
               Delete
             </button>
             <button
-              className="rounded border-0 bg-gray-500 px-4 py-2 text-white hover:bg-gray-600 focus:outline-none"
+              className="rounded border-0 bg-slate-500 px-4 py-2 text-white hover:bg-slate-600 focus:outline-none"
               onClick={onClose}
             >
               Cancel
