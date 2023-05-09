@@ -11,6 +11,7 @@ import DownArrowIcon from "./DownArrowIcon";
 import AuthSection from "./authSection/AuthSection";
 import FeaturesSection from "./featuresSection/FeaturesSection";
 import StartTour from "./startTour/StartTour";
+import ScrollToTargetLink from "./ScrollLink";
 
 const LandingPage = () => {
   const { data } = api.posts.getAll.useQuery();
@@ -84,8 +85,10 @@ const LandingPage = () => {
       </div>
       <div ref={section3Ref}>
         <SummarySection />
+        <div className="my-4 flex justify-center">
+          <ScrollToTargetLink targetRef={topRef} text="Back to Top" />
+        </div>
       </div>
-
     </>
   );
 };
