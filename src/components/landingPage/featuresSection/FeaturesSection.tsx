@@ -14,23 +14,23 @@ const FeaturesSection: React.FC = () => {
                 <p className="mt-2 font-vt323 text-3xl font-bold tracking-tight text-violet-900 sm:text-4xl">
                   Streamlined, Minimalist Design
                 </p>
-                <p className="mt-6 text-lg font-bold leading-8 text-slate-600">
+                <p className="mt-6 text-xl font-black leading-8 text-slate-950">
                   Experience an intuitive interface with essential features:
                 </p>
                 <ul className="mt-6 list-none space-y-4">
-                  <li className="flex items-center text-lg leading-8 text-slate-600">
+                  <li className="flex items-center text-lg leading-8 text-slate-800">
                     <span role="img" aria-label="alien" className="mr-2">
                       👾
                     </span>
                     <span>User Profiles with Likes & Post History</span>
                   </li>
-                  <li className="flex items-center text-lg leading-8 text-slate-600">
+                  <li className="flex items-center text-lg leading-8 text-slate-800">
                     <span role="img" aria-label="alien" className="mr-2">
                       👾
                     </span>
                     <span>Replies & Thread Viewing</span>
                   </li>
-                  <li className="flex items-center text-lg leading-8 text-slate-600">
+                  <li className="flex items-center text-lg leading-8 text-slate-800">
                     <span role="img" aria-label="alien" className="mr-2">
                       👾
                     </span>

@@ -11,14 +11,14 @@ const AuthSection: React.FC = () => {
             <h2 className="font-vt323 text-3xl font-bold tracking-tight text-violet-900 sm:text-4xl">
               Developer-centric and Secure
             </h2>
-            <p className="mt-4 text-lg leading-8 text-slate-800">
+            <p className="mt-4 text-lg font leading-8 text-slate-950">
               Chatter is built for developers who value simplicity and
               efficiency.{" "}
             </p>
-            <p className="mt-4 text-lg leading-8 text-slate-800">
-              Powered by Clerk, we ensure seamless and secure authentication.{" "}
+            <p className="mt-4 text-lg font leading-8 text-slate-950">
+            With Clerk powering the authentication, seamless and secure access is ensured.{" "}
             </p>
-            <p className="mt-4 text-xl font-semibold leading-8 text-slate-800">
+            <p className="mt-4 text-xl font-black leading-8 text-slate-950">
               Sign in using your GitHub account and get started instantly...{" "}
             </p>
             <div className="mt-6 flex max-w-md gap-x-4">
@@ -30,7 +30,7 @@ const AuthSection: React.FC = () => {
               </button>
               <button
                 type="submit"
-                className="flex-none rounded border-2  border-b-4 border-violet-300 bg-violet-300 px-4 py-2 text-sm font-bold text-slate-500  shadow-md shadow-violet-300 hover:border-violet-600 hover:bg-violet-200 focus:outline-none focus:ring-4 focus:ring-violet-300 focus-visible:outline focus-visible:outline-2   focus-visible:outline-offset-2 focus-visible:outline-violet-300 dark:bg-violet-100 dark:hover:bg-violet-200 dark:focus:ring-violet-600"
+                className="flex-none rounded border-2  border-b-4 border-violet-800 bg-white px-4 py-2 text-sm  text-violet-950 shadow-md shadow-violet-300 hover:border-violet-600 hover:bg-violet-200 focus:outline-none focus:ring-4 focus:ring-violet-300 focus-visible:outline focus-visible:outline-2   focus-visible:outline-offset-2 focus-visible:outline-violet-500 dark:bg-white dark:hover:bg-violet-200 dark:focus:ring-violet-600"
               >
                 Sign In
               </button>
