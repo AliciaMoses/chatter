@@ -39,7 +39,12 @@ const PostFooter: React.FC<PostFooterProps> = ({
           onClick={(event) => handleLikeClick(event)}
         />
       </Link>
+      <div className="flex items-center space-x-2">
       <ReplyButton onClick={handleExpand} />
+      <span className="cursor-pointer" onClick={handleExpand}>
+        reply
+      </span>
+    </div>
       {user && user.id === author.id ? (
         <Link href={deleteButtonHref}>
           <DeleteButton
