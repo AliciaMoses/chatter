@@ -11,7 +11,7 @@
 
 - [x] Add landing page to index
 - [x] Add Navbar
-- [] Add Profile Header
+- [x] Add Profile Header
 - [] Add Custom Feed
 - [] Add Feed Tabs
 
@@ -35,16 +35,16 @@
 - [] Add enter to send confirmation
 - [x] Add delete post modal confirmation
 - [x] Debug individual profile post routing
-- [] See who liked a post 
+- [x] See user likes 
 
 ## UI
 
 - [] Change favicon 
-- [] Style buttons 
-- [] Add dymanic page titles
+- [x] Style buttons 
+- [x] Add dymanic page titles
 - [x] Add loading animations 
 - [x] Add automatic feed update after posts
-- [] Adjust user profile image size on post 
+- [x] Adjust user profile image size on post 
 
 ## Planning & Design 
 
@@ -54,9 +54,9 @@
 
 ## Code Quality 
 
-- [] Segregate functions from components files 
+- [x] Segregate functions from components files 
 - [] Move CSS styling rules out of individual components -> Create global styles / themes
-- [] Convert consts into react components where required
+- [x] Convert consts into react components where required
 
 ## Performance 
 
