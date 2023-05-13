@@ -52,7 +52,7 @@ const Profile: NextPage<{ username: string }> = ({ username }) => {
       </h1>
       <br></br>
       <button
-    className="text-center mx-auto block mb-4"
+    className="flex-items-center mr-2 flex rounded border-2 border-b-4 border-violet-800 px-4 py-2 font-bold text-violet-950 shadow-md shadow-violet-300 hover:border-violet-800 hover:bg-violet-200 focus:outline-none focus:ring-4 focus:ring-violet-300 dark:bg-violet-100 dark:hover:bg-violet-200 dark:focus:ring-violet-800"
     onClick={() => setShowLikedPosts(!showLikedPosts)}
   >
     {showLikedPosts ? "Show Posts" : "Show Liked Posts"}
