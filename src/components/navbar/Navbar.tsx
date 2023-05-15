@@ -51,7 +51,7 @@ const Navbar: React.FC = () => {
               <Link href="/">
                 <button
                   type="button"
-                  className="flex flex-items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50"
+                  className="flex flex-items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-violet-300 hover:bg-slate-50"
                 >
                   <HomeIcon />
                   <span className="ml-2">Home</span>
@@ -62,7 +62,7 @@ const Navbar: React.FC = () => {
               <Link href="/feed">
                 <button
                   type="button"
-                  className="flex flex-items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-slate-300 hover:bg-slate-50"
+                  className="flex flex-items-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm ring-1 ring-inset ring-violet-300 hover:bg-slate-50"
                 >
                   <FeedIcon />
                    <span className="ml-2">Feed</span>

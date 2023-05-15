@@ -60,7 +60,7 @@
 
 ## Performance 
 
-- [] Test lazy loading of emoji picker to improve performance 
+- [x] Test lazy loading of emoji picker to improve performance 
 
 
 ## Bug Fixes
