@@ -78,3 +78,28 @@ body {
     animation: moveUpDown 2s ease-in-out infinite;
   }
   
+
+
+  .search-container {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  max-height: 200px;
+  overflow-y: auto;
+  width: 100%;
+  z-index: 100;
+}
+
+.dropdown-item {
+  cursor: pointer;
+  padding: 0.5rem;
+}
+
+.dropdown-item:hover {
+  background-color: #f0f0f0;
+}
