@@ -1,7 +1,14 @@
 # Chatter
 
 
-### Chatter is a Twitter-like social media application built with TypeScript, TRPc, React, Next.js, and Tailwind CSS. It features a MySQL database with Prisma ORM, hosted on PlanetScale, and uses Clerk for authentication with GitHub OAuth. The site is deployed via Vercel.
+### Chatter is a Twitter-like social media application built with TypeScript, TRPc, React, Next.js, and Tailwind CSS. It features a MySQL database with Prisma ORM, hosted on PlanetScale, and uses Clerk for authentication with GitHub OAuth. The site is deployed via Vercel. 
+
+<details>
+  <summary>Take a quick look</summary>
+
+![Screenshot 2023-05-23 201639](https://github.com/AliciaMoses/playing-with-git/assets/115192380/2ea90125-a041-4f5b-8bee-b6f31660da73)
+
+</details>
 
 <br>
 
@@ -24,9 +31,11 @@
 
 # Features
 
-- Modern and responsive user interface
+- Modern and responsive UI
 - Sign In / Sign Up with GitHub OAuth
 - Create, read, and delete posts
+- Post replies
+- User profiles
 - Real-time feed updates
 - Rate limiting using Upstash Redis
 
